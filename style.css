@@ -18,11 +18,11 @@ body {
 }
 
 /* Left Top Section */
-.left-top {
+.RADIAL {
     position: absolute;
     top: 20px;
     left: 20px;
-    width: 300px;
+    width: 450px;
     height: 250px;
     padding: 10px;
     background-color: #3498db;
@@ -32,11 +32,11 @@ body {
 }
 
 /* Left Bottom Section */
-.left-bottom {
+.PROFILE {
     position: absolute;
     bottom: 20px;
     left: 20px;
-    width: 250px;
+    width: 450px;
     height: 250px;
     padding: 10px;
     background-color: #2ecc71;
