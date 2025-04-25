@@ -71,7 +71,7 @@ body {
     cursor: pointer;
 }
 
-/* Center Button */
+/* Center Button 2 */
 .social {
     display: inline-block;
     position: absolute;
@@ -80,7 +80,7 @@ body {
     transform: translate(-50%, -50%);
     font-size: 48px;
     padding: 30px 60px;
-    background-color: #e67e22;
+    background-color: #7ce44c;
     color: white;
     text-decoration: none; /* Removes default link styling */
     border-radius: 20px;
