@@ -75,9 +75,9 @@ body {
 .social {
     display: inline-block;
     position: absolute;
-    top: 75%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-20%, -50%);
     font-size: 48px;
     padding: 30px 60px;
     background-color: #7ce44c;
