@@ -18,7 +18,7 @@ body {
 }
 
 /* Left Top Section */
-.RADIAL {
+.radial {
     position: absolute;
     top: 20px;
     left: 20px;
@@ -32,7 +32,7 @@ body {
 }
 
 /* Left Bottom Section */
-.PROFILE {
+.profile {
     position: absolute;
     bottom: 20px;
     left: 20px;
