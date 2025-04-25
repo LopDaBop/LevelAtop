@@ -71,6 +71,24 @@ body {
     cursor: pointer;
 }
 
+/* Center Button */
+.social {
+    display: inline-block;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    padding: 30px 60px;
+    background-color: #e67e22;
+    color: white;
+    text-decoration: none; /* Removes default link styling */
+    border-radius: 20px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
 
 /* Leaderboard Section */
 .leaderboard {
