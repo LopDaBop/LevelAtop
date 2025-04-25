@@ -47,7 +47,6 @@ body {
 
 /* Image Styling for Left Sections */
 .radial img, .profile img {
-    size: 200px;
     width: 250px; 
     height: 250px;
     display: block; 
