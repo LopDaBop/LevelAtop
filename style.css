@@ -47,6 +47,7 @@ body {
 
 /* Center Button */
 .attributes {
+    display: inline-block;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -55,9 +56,15 @@ body {
     padding: 30px 60px;
     background-color: #e67e22;
     color: white;
-    border: none;
+    text-decoration: none; /* Removes default link styling */
     border-radius: 20px;
+    text-align: center;
+    border: none;
     cursor: pointer;
+}
+
+
+
 }
 
 /* Leaderboard Section */
