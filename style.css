@@ -1,10 +1,12 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
     text-align: center;
     background-color: #f4f4f4;
 }
 
+/* Title at the top */
 .title {
     font-size: 48px;
     font-weight: bold;
@@ -15,3 +17,60 @@ body {
     color: transparent;
 }
 
+/* Left Top Section */
+.left-top {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+/* Left Bottom Section */
+.left-bottom {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: 10px;
+    background-color: #2ecc71;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+/* Center Button */
+.center-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    padding: 15px 30px;
+    background-color: #e67e22;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Leaderboard Section */
+.leaderboard {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    width: 250px;
+    height: 90%;
+    background-color: #9b59b6;
+    color: white;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.leaderboard-title {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+}
