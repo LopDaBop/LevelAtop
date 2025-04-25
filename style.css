@@ -22,7 +22,8 @@ body {
     position: absolute;
     top: 20px;
     left: 20px;
-    width: 250px;
+    width: 300px;
+    height: 250px;
     padding: 10px;
     background-color: #3498db;
     color: white;
@@ -36,6 +37,7 @@ body {
     bottom: 20px;
     left: 20px;
     width: 250px;
+    height: 250px;
     padding: 10px;
     background-color: #2ecc71;
     color: white;
