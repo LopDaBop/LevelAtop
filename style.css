@@ -45,6 +45,14 @@ body {
     border-radius: 5px;
 }
 
+/* Image Styling for Left Sections */
+.radial img, .profile img {
+    width: 50px; /* Adjust size as needed */
+    height: 50px;
+    display: block; /* Ensures image is centered above text */
+    margin: 0 auto 5px; /* Centers the image and adds space below it */
+}
+
 /* Center Button */
 .attributes {
     display: inline-block;
