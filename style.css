@@ -77,7 +77,7 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-20%, -50%);
+    transform: translate(-50%, -50%);
     font-size: 48px;
     padding: 30px 60px;
     background-color: #7ce44c;
