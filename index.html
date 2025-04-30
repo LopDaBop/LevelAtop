@@ -6,35 +6,38 @@
     <title>LevelAtop</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="loadUser()">
     <div class="title">LevelAtop</div>
-
 
     <!-- Left Top Section -->
     <div class="radial">
-        <img src="radial.webp" alt="Web Radial Image">
-        Web Radial
+        <canvas id="radarChart"></canvas>
+        <div>Web Radial</div>
     </div>
 
-    
     <!-- Left Bottom Section -->
     <div class="profile">
         <img src="profile.jpeg" alt="Profile Image">
-        Profile
+        <div id="profileName">Guest</div>
+        <div id="profileLevel">Level: 0</div>
     </div>
 
-
-
-    <!--<button class="attributes">Attributes</button>-->
-    <!-- Center Button styled as a link -->
-    <a href="https://google.com" class="attributes">Attributes</a>
-
-
-    <a href="https://google.com" class="social">Social</a>
+    <!-- Center Buttons -->
+    <a href="#" class="attributes" onclick="openAttributes()">Attributes</a>
+    <a href="social.html" class="social">Social</a>
 
     <!-- Right Leaderboard Section -->
     <div class="leaderboard">
         <div class="leaderboard-title">Leaderboard</div>
+        <ul id="leaderboardList"></ul>
     </div>
+
+    <!-- Login/Register Panel -->
+    <div id="authSection">
+        <a href="login.html">Login</a> | <a href="register.html">Register</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
