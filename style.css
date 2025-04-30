@@ -108,3 +108,24 @@ body {
     font-weight: bold;
     text-align: center;
 }
+
+/* NEW: Fix overlapping buttons */
+.attributes {
+    top: 40%;
+}
+
+.social {
+    top: 60%;
+}
+
+/* NEW: Centered auth section */
+#authSection {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
