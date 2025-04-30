@@ -77,20 +77,6 @@ function renderRadar(attributes) {
     });
 }
 
-function openAttributes() {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (!user) {
-        alert("Please login first.");
-        return;
-    }
-    const attr = user.attributes;
-    for (let key in attr) {
-        const add = confirm(`Increase ${key}? (Current: ${attr[key]})`);
-        if (add) attr[key]++;
-    }
-    saveUser(user);
-    location.reload();
-}
 
 function updateLeaderboard(currentUser) {
     let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
@@ -107,4 +93,29 @@ function updateLeaderboard(currentUser) {
         li.innerText = `${user.name}: Level ${user.level}`;
         list.appendChild(li);
     });
+}
+
+function openAttributes() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) return;
+
+    document.getElementById('attrInt').value = user.attributes.Intelligence;
+    document.getElementById('attrKnow').value = user.attributes.Knowledge;
+    document.getElementById('attrStr').value = user.attributes.Strength;
+    document.getElementById('attrHlth').value = user.attributes.Health;
+
+    document.getElementById('attributePanel').style.display = 'block';
+}
+
+function saveAttributes() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) return;
+
+    user.attributes.Intelligence = parseInt(document.getElementById('attrInt').value);
+    user.attributes.Knowledge = parseInt(document.getElementById('attrKnow').value);
+    user.attributes.Strength = parseInt(document.getElementById('attrStr').value);
+    user.attributes.Health = parseInt(document.getElementById('attrHlth').value);
+
+    saveUser(user);
+    location.reload();
 }
