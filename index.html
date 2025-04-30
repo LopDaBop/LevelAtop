@@ -26,6 +26,16 @@
     <a href="#" class="attributes" onclick="openAttributes()">Attributes</a>
     <a href="social.html" class="social">Social</a>
 
+    <!-- Add this inside index.html if you're customizing -->
+    <div id="attributePanel">
+        <label>Intelligence: <input type="number" id="attrInt" min="0" max="10"></label><br>
+        <label>Knowledge: <input type="number" id="attrKnow" min="0" max="10"></label><br>
+        <label>Strength: <input type="number" id="attrStr" min="0" max="10"></label><br>
+        <label>Health: <input type="number" id="attrHlth" min="0" max="10"></label><br>
+        <button onclick="saveAttributes()">Save</button>
+    </div>
+
+    
     <!-- Right Leaderboard Section -->
     <div class="leaderboard">
         <div class="leaderboard-title">Leaderboard</div>
