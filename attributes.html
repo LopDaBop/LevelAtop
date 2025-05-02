@@ -1,0 +1,36 @@
+<!-- attributes.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attributes</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="attr-page">
+    <button onclick="goBack()" class="back-btn">← Home</button>
+
+    <h1>User Attributes</h1>
+
+    <canvas id="attributeRadar" width="500" height="500"></canvas>
+
+    <div class="attribute-boxes">
+        <div class="attribute">
+            Intelligence: <input type="number" id="intelligence" min="0" max="10">
+        </div>
+        <div class="attribute">
+            Knowledge: <input type="number" id="knowledge" min="0" max="10">
+        </div>
+        <div class="attribute">
+            Strength: <input type="number" id="strength" min="0" max="10">
+        </div>
+        <div class="attribute">
+            Health: <input type="number" id="health" min="0" max="10">
+        </div>
+    </div>
+
+    <button onclick="saveAttributes()" class="save-btn">Save Attributes</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
