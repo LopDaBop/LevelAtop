@@ -119,3 +119,63 @@ function saveAttributes() {
     saveUser(user);
     location.reload();
 }
+// For attributes.html only
+if (document.getElementById("attributeRadar")) {
+    const ctx = document.getElementById("attributeRadar").getContext("2d");
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const attributes = user?.attributes || {
+        Intelligence: 0,
+        Knowledge: 0,
+        Strength: 0,
+        Health: 0
+    };
+
+    document.getElementById("intelligence").value = attributes.Intelligence;
+    document.getElementById("knowledge").value = attributes.Knowledge;
+    document.getElementById("strength").value = attributes.Strength;
+    document.getElementById("health").value = attributes.Health;
+
+    const radarChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: Object.keys(attributes),
+            datasets: [{
+                label: 'User Stats',
+                data: Object.values(attributes),
+                backgroundColor: 'rgba(46, 204, 113, 0.4)',
+                borderColor: 'rgba(39, 174, 96, 1)',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            scale: {
+                ticks: {
+                    beginAtZero: true,
+                    max: 10
+                }
+            }
+        }
+    });
+}
+
+function goBack() {
+    window.location.href = "index.html";
+}
+
+function saveAttributes() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) return;
+
+    user.attributes.Intelligence = parseInt(document.getElementById("intelligence").value);
+    user.attributes.Knowledge = parseInt(document.getElementById("knowledge").value);
+    user.attributes.Strength = parseInt(document.getElementById("strength").value);
+    user.attributes.Health = parseInt(document.getElementById("health").value);
+
+    localStorage.setItem("user", JSON.stringify(user));
+    alert("Attributes saved!");
+
+    // Reload chart with new data
+    location.reload();
+}
+
