@@ -139,3 +139,60 @@ body {
     display: none;
 }
 
+/* Attributes Page Styling */
+.attr-page {
+    background-color: #eef3f7;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 30px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.attribute-boxes {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.attribute {
+    background: #ffffff;
+    border: 2px solid #3498db;
+    border-radius: 12px;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.attribute input {
+    font-size: 18px;
+    width: 60px;
+    margin-left: 10px;
+}
+
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+    background: #7ce44c;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.save-btn {
+    margin-top: 30px;
+    padding: 15px 40px;
+    font-size: 22px;
+    background: #f39c12;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
