@@ -12,8 +12,6 @@
 
     <h1>User Attributes</h1>
 
-    <canvas id="attributeRadar" width="500" height="500"></canvas>
-
     <div class="attribute-boxes">
         <div class="attribute">
             Intelligence: <input type="number" id="intelligence" min="0" max="10">
@@ -30,6 +28,11 @@
     </div>
 
     <button onclick="saveAttributes()" class="save-btn">Save Attributes</button>
+
+    <!-- Smaller and lower-positioned radar chart -->
+    <div style="margin-top: 30px;">
+        <canvas id="attributeRadar" width="300" height="300"></canvas>
+    </div>
 
     <script src="script.js"></script>
 </body>
