@@ -1,4 +1,3 @@
-<!-- attributes.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,32 +7,87 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="attr-page">
-    <button onclick="goBack()" class="back-btn">← Home</button>
 
+    <button onclick="goBack()" class="back-btn">← Home</button>
     <h1>User Attributes</h1>
 
-    <div class="attribute-boxes">
-        <div class="attribute">
-            Intelligence: <input type="number" id="intelligence" min="0" max="10">
-        </div>
-        <div class="attribute">
-            Knowledge: <input type="number" id="knowledge" min="0" max="10">
-        </div>
-        <div class="attribute">
-            Strength: <input type="number" id="strength" min="0" max="10">
-        </div>
-        <div class="attribute">
-            Health: <input type="number" id="health" min="0" max="10">
+    <div class="attributes-layout">
+        <canvas id="attributeRadar"></canvas>
+
+        <div class="attribute-boxes vertical">
+            <div class="attribute">
+                Intelligence: <input type="number" id="intelligence" min="0" max="10">
+            </div>
+            <div class="attribute">
+                Knowledge: <input type="number" id="knowledge" min="0" max="10">
+            </div>
+            <div class="attribute">
+                Strength: <input type="number" id="strength" min="0" max="10">
+            </div>
+            <div class="attribute">
+                Health: <input type="number" id="health" min="0" max="10">
+            </div>
         </div>
     </div>
 
     <button onclick="saveAttributes()" class="save-btn">Save Attributes</button>
 
-    <!-- Smaller and lower-positioned radar chart -->
-    <div style="margin-top: 30px;">
-        <canvas id="attributeRadar" width="300" height="300"></canvas>
-    </div>
-
     <script src="script.js"></script>
+    <script>
+        function goBack() {
+            window.location.href = "index.html";
+        }
+
+        const ctx = document.getElementById('attributeRadar').getContext('2d');
+
+        const radarChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Intelligence', 'Knowledge', 'Strength', 'Health'],
+                datasets: [{
+                    label: 'User Stats',
+                    data: [5, 5, 5, 5],
+                    backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                    borderColor: 'rgba(52, 152, 219, 1)',
+                    pointBackgroundColor: 'rgba(52, 152, 219, 1)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        min: 0,
+                        max: 10,
+                        ticks: {
+                            stepSize: 1,
+                            backdropColor: 'transparent'
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        function saveAttributes() {
+            const intelligence = parseInt(document.getElementById('intelligence').value) || 0;
+            const knowledge = parseInt(document.getElementById('knowledge').value) || 0;
+            const strength = parseInt(document.getElementById('strength').value) || 0;
+            const health = parseInt(document.getElementById('health').value) || 0;
+
+            radarChart.data.datasets[0].data = [intelligence, knowledge, strength, health];
+            radarChart.update();
+        }
+    </script>
 </body>
 </html>
