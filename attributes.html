@@ -1,93 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Attributes</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8" />
+  <title>Attributes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="attr-page">
+  <button onclick="goBack()" class="back-btn">← Home</button>
+  <h1>User Attributes</h1>
 
-    <button onclick="goBack()" class="back-btn">← Home</button>
-    <h1>User Attributes</h1>
-
-    <div class="attributes-layout">
-        <canvas id="attributeRadar"></canvas>
-
-        <div class="attribute-boxes vertical">
-            <div class="attribute">
-                Intelligence: <input type="number" id="intelligence" min="0" max="10">
-            </div>
-            <div class="attribute">
-                Knowledge: <input type="number" id="knowledge" min="0" max="10">
-            </div>
-            <div class="attribute">
-                Strength: <input type="number" id="strength" min="0" max="10">
-            </div>
-            <div class="attribute">
-                Health: <input type="number" id="health" min="0" max="10">
-            </div>
-        </div>
+  <div class="attribute-container">
+    <!-- Radar Chart Section -->
+    <div class="chart-box">
+      <canvas id="attributeRadar"></canvas>
     </div>
 
-    <button onclick="saveAttributes()" class="save-btn">Save Attributes</button>
+    <!-- Attribute Input Section -->
+    <div class="attribute-boxes">
+      <div class="attribute">
+        Intelligence: <input type="number" id="intelligence" min="0" />
+      </div>
+      <div class="attribute">
+        Knowledge: <input type="number" id="knowledge" min="0" />
+      </div>
+      <div class="attribute">
+        Strength: <input type="number" id="strength" min="0" />
+      </div>
+      <div class="attribute">
+        Health: <input type="number" id="health" min="0" />
+      </div>
+      <button onclick="saveAttributes()" class="save-btn">Save</button>
+    </div>
+  </div>
 
-    <script src="script.js"></script>
-    <script>
-        function goBack() {
-            window.location.href = "index.html";
-        }
+  <script>
+    function goBack() {
+      window.location.href = "index.html";
+    }
 
-        const ctx = document.getElementById('attributeRadar').getContext('2d');
+    function getAttributes() {
+      return {
+        Intelligence: parseInt(document.getElementById("intelligence").value) || 0,
+        Knowledge: parseInt(document.getElementById("knowledge").value) || 0,
+        Strength: parseInt(document.getElementById("strength").value) || 0,
+        Health: parseInt(document.getElementById("health").value) || 0
+      };
+    }
 
-        const radarChart = new Chart(ctx, {
-            type: 'radar',
-            data: {
-                labels: ['Intelligence', 'Knowledge', 'Strength', 'Health'],
-                datasets: [{
-                    label: 'User Stats',
-                    data: [5, 5, 5, 5],
-                    backgroundColor: 'rgba(52, 152, 219, 0.2)',
-                    borderColor: 'rgba(52, 152, 219, 1)',
-                    pointBackgroundColor: 'rgba(52, 152, 219, 1)',
-                    borderWidth: 2
-                }]
+    function saveAttributes() {
+      const attrs = getAttributes();
+      localStorage.setItem("attributes", JSON.stringify(attrs));
+      updateChart(attrs);
+    }
+
+    function perceptualScale(value) {
+      return Math.sqrt(value) / Math.sqrt(100); // You can tweak 100 to change how slow it scales
+    }
+
+    function updateChart(data) {
+      const scaledData = Object.values(data).map(perceptualScale);
+
+      radarChart.data.datasets[0].data = scaledData;
+      radarChart.update();
+    }
+
+    const savedAttributes = JSON.parse(localStorage.getItem("attributes")) || {
+      Intelligence: 5,
+      Knowledge: 5,
+      Strength: 5,
+      Health: 5
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      for (const key in savedAttributes) {
+        document.getElementById(key.toLowerCase()).value = savedAttributes[key];
+      }
+      updateChart(savedAttributes);
+    });
+
+    const ctx = document.getElementById("attributeRadar").getContext("2d");
+
+    const radarChart = new Chart(ctx, {
+      type: "radar",
+      data: {
+        labels: ["Intelligence", "Knowledge", "Strength", "Health"],
+        datasets: [
+          {
+            label: "Attribute Distribution",
+            data: [0, 0, 0, 0], // Will be set later
+            backgroundColor: "rgba(46, 204, 113, 0.2)",
+            borderColor: "rgba(39, 174, 96, 1)",
+            borderWidth: 2,
+            pointBackgroundColor: "rgba(39, 174, 96, 1)",
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          r: {
+            min: 0,
+            max: 1.1, // ensure there's always room for improvement
+            ticks: {
+              display: false,
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    r: {
-                        min: 0,
-                        max: 10,
-                        ticks: {
-                            stepSize: 1,
-                            backdropColor: 'transparent'
-                        },
-                        pointLabels: {
-                            font: {
-                                size: 14
-                            }
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                }
-            }
-        });
-
-        function saveAttributes() {
-            const intelligence = parseInt(document.getElementById('intelligence').value) || 0;
-            const knowledge = parseInt(document.getElementById('knowledge').value) || 0;
-            const strength = parseInt(document.getElementById('strength').value) || 0;
-            const health = parseInt(document.getElementById('health').value) || 0;
-
-            radarChart.data.datasets[0].data = [intelligence, knowledge, strength, health];
-            radarChart.update();
-        }
-    </script>
+            grid: {
+              circular: false, // makes it a spiderweb instead of a circle
+            },
+            pointLabels: {
+              font: {
+                size: 16,
+              },
+            },
+          },
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+      },
+    });
+  </script>
 </body>
 </html>
