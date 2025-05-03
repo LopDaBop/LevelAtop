@@ -229,3 +229,46 @@ canvas {
         margin: 20px auto;
     }
 }
+
+.attributes-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px 20px;
+    min-height: 80vh;
+    gap: 40px;
+    box-sizing: border-box;
+}
+
+#attributeRadar {
+    max-width: 400px;
+    max-height: 400px;
+    width: 90vw;
+    height: auto;
+}
+
+.attribute-boxes.vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
+    min-width: 200px;
+}
+
+@media (max-width: 768px) {
+    .attributes-layout {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    #attributeRadar {
+        max-width: 300px;
+    }
+
+    .attribute-boxes.vertical {
+        align-items: center;
+    }
+}
