@@ -179,3 +179,7 @@ function saveAttributes() {
     location.reload();
 }
 
+function logoutUser() {
+  localStorage.removeItem("loggedInUser");
+  window.location.href = "login.html";
+}
