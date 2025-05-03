@@ -11,26 +11,19 @@
   <button onclick="goBack()" class="back-btn">← Home</button>
   <h1>User Attributes</h1>
 
-  <div class="attribute-container">
-    <!-- Radar Chart Section -->
-    <div class="chart-box">
+  <!-- Main Responsive Flex Layout -->
+  <div class="attribute-page-container">
+    <!-- Left: Chart Section -->
+    <div class="chart-section">
       <canvas id="attributeRadar"></canvas>
     </div>
 
-    <!-- Attribute Input Section -->
-    <div class="attribute-boxes">
-      <div class="attribute">
-        Intelligence: <input type="number" id="intelligence" min="0" />
-      </div>
-      <div class="attribute">
-        Knowledge: <input type="number" id="knowledge" min="0" />
-      </div>
-      <div class="attribute">
-        Strength: <input type="number" id="strength" min="0" />
-      </div>
-      <div class="attribute">
-        Health: <input type="number" id="health" min="0" />
-      </div>
+    <!-- Right: Input Section -->
+    <div class="input-section">
+      <label>Intelligence: <input type="number" id="intelligence" min="0" max="100" /></label>
+      <label>Knowledge: <input type="number" id="knowledge" min="0" max="100" /></label>
+      <label>Strength: <input type="number" id="strength" min="0" max="100" /></label>
+      <label>Health: <input type="number" id="health" min="0" max="100" /></label>
       <button onclick="saveAttributes()" class="save-btn">Save</button>
     </div>
   </div>
@@ -56,12 +49,11 @@
     }
 
     function perceptualScale(value) {
-      return Math.sqrt(value) / Math.sqrt(100); // You can tweak 100 to change how slow it scales
+      return Math.sqrt(value) / Math.sqrt(100);
     }
 
     function updateChart(data) {
       const scaledData = Object.values(data).map(perceptualScale);
-
       radarChart.data.datasets[0].data = scaledData;
       radarChart.update();
     }
@@ -81,21 +73,18 @@
     });
 
     const ctx = document.getElementById("attributeRadar").getContext("2d");
-
     const radarChart = new Chart(ctx, {
       type: "radar",
       data: {
         labels: ["Intelligence", "Knowledge", "Strength", "Health"],
-        datasets: [
-          {
-            label: "Attribute Distribution",
-            data: [0, 0, 0, 0], // Will be set later
-            backgroundColor: "rgba(46, 204, 113, 0.2)",
-            borderColor: "rgba(39, 174, 96, 1)",
-            borderWidth: 2,
-            pointBackgroundColor: "rgba(39, 174, 96, 1)",
-          },
-        ],
+        datasets: [{
+          label: "Attribute Distribution",
+          data: [0, 0, 0, 0],
+          backgroundColor: "rgba(46, 204, 113, 0.2)",
+          borderColor: "rgba(39, 174, 96, 1)",
+          borderWidth: 2,
+          pointBackgroundColor: "rgba(39, 174, 96, 1)",
+        }]
       },
       options: {
         responsive: true,
@@ -103,26 +92,22 @@
         scales: {
           r: {
             min: 0,
-            max: 1.1, // ensure there's always room for improvement
+            max: 1.1,
             ticks: {
-              display: false,
+              display: false
             },
             grid: {
-              circular: false, // makes it a spiderweb instead of a circle
+              circular: false
             },
             pointLabels: {
-              font: {
-                size: 16,
-              },
-            },
-          },
+              font: { size: 16 }
+            }
+          }
         },
         plugins: {
-          legend: {
-            display: false,
-          },
-        },
-      },
+          legend: { display: false }
+        }
+      }
     });
   </script>
 </body>
