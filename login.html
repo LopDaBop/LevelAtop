@@ -1,25 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login - LevelAtop</title>
-  <link rel="stylesheet" href="style.css" />
+    <title>Login - LevelAtop</title>
 </head>
-<body class="auth-page">
-  <div class="auth-container">
-    <h2>Login</h2>
+<body>
+    <h1>Login</h1>
     <form onsubmit="return loginUser(event)">
-      <label for="loginEmail">Email</label>
-      <input type="email" id="loginEmail" required />
-
-      <label for="loginPassword">Password</label>
-      <input type="password" id="loginPassword" required />
-
-      <button type="submit">Login</button>
+        <input type="text" id="loginName" placeholder="Username" required><br>
+        <button type="submit">Login</button>
     </form>
-    <p>Don't have an account? <a href="register.html">Register here</a></p>
-  </div>
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
