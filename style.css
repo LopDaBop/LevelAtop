@@ -352,3 +352,67 @@ body {
      font-size: 2rem;
    }
  }
+
+/* === Login Page Specific Styling === */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+  padding: 2rem;
+}
+
+.login-box {
+  background-color: #1e1e2f;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 400px;
+  color: #f1f1f1;
+}
+
+.login-box h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #ffffff;
+}
+
+.login-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #2c2c3e;
+  color: #f1f1f1;
+}
+
+.login-box input[type="text"]:focus,
+.login-box input[type="password"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #7a5af5;
+}
+
+.login-box button {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: #7a5af5;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-box button:hover {
+  background: #9a7dff;
+}
+
