@@ -272,3 +272,70 @@ canvas {
         align-items: center;
     }
 }
+
+/* Login/Register Pages */
+.auth-page {
+    background: linear-gradient(120deg, #e67e22, #f1c40f, #2ecc71);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.auth-container {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.auth-form input {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.auth-form input:focus {
+    border-color: #3498db;
+}
+
+.auth-form button {
+    padding: 12px;
+    font-size: 18px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.auth-form button:hover {
+    background-color: #2980b9;
+}
+
+.auth-switch {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.auth-switch a {
+    color: #e67e22;
+    text-decoration: none;
+    font-weight: bold;
+}
+
