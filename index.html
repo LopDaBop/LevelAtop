@@ -1,55 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <header>
-        <div class="logo">
-            <h1>Game Logo</h1>
-        </div>
-    </header>
-
-    <div class="main-content">
-        <div class="left-section">
-            <!-- Radial Chart Box -->
-            <div class="radial">
-                <canvas id="attributeRadar"></canvas>
-            </div>
-
-            <!-- User Info Box -->
-            <div class="profile">
-                <img src="profile-pic.jpg" alt="Profile Picture" class="profile-img">
-                <h2>Username</h2>
-                <p>Level: 10</p>
-                <p>Health: 80</p>
-                <p>Strength: 70</p>
-            </div>
-        </div>
-
-        <div class="right-section">
-            <!-- Buttons -->
-            <div class="buttons">
-                <a href="#" class="attributes">Attributes</a>
-                <a href="#" class="socials">Socials</a>
-                <a href="#" class="profile-btn">Profile</a>
-                <a href="#" class="logout-btn">Logout</a>
-            </div>
-
-            <!-- Leaderboard -->
-            <div class="leaderboard">
-                <div class="leaderboard-title">Leaderboard</div>
-                <div class="leaderboard-content">
-                    <!-- Leaderboard Data (populate dynamically) -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>LevelAtop</title>
+     <title>User Profile</title>
+     <link rel="stylesheet" href="style.css">
+ </head>
+ <body onload="loadUser()">
+     <div class="title">LevelAtop</div>
+ <body>
+ 
+     <!-- Left Top Section -->
+     <div class="radial">
+         <canvas id="radarChart"></canvas>
+         <div>Web Radial</div>
+     </div>
+     <header>
+         <div class="logo">
+             <h1>Game Logo</h1>
+         </div>
+     </header>
+ 
+     <!-- Left Bottom Section -->
+     <div class="profile">
+         <img src="profile.jpeg" alt="Profile Image">
+         <div id="profileName">Guest</div>
+         <div id="profileLevel">Level: 0</div>
+         <!-- 🔽 Logout Button Added Here -->
+         <button onclick="logoutUser()" class="logout-button">Logout</button>
+     </div>
+     <div class="main-content">
+         <div class="left-section">
+             <!-- Radial Chart Box -->
+             <div class="radial">
+                 <canvas id="attributeRadar"></canvas>
+             </div>
+ 
+     <!-- Center Buttons -->
+     <a href="attributes.html" class="attributes">Attributes</a>
+     <a href="social.html" class="social">Social</a>
+             <!-- User Info Box -->
+             <div class="profile">
+                 <img src="profile-pic.jpg" alt="Profile Picture" class="profile-img">
+                 <h2>Username</h2>
+                 <p>Level: 10</p>
+                 <p>Health: 80</p>
+                 <p>Strength: 70</p>
+             </div>
+         </div>
+ 
+     <!-- Attribute Panel -->
+     <div id="attributePanel">
+         <label>Intelligence: <input type="number" id="attrInt" min="0" max="10"></label><br>
+         <label>Knowledge: <input type="number" id="attrKnow" min="0" max="10"></label><br>
+         <label>Strength: <input type="number" id="attrStr" min="0" max="10"></label><br>
+         <label>Health: <input type="number" id="attrHlth" min="0" max="10"></label><br>
+         <button onclick="saveAttributes()">Save</button>
+     </div>
+ 
+     <!-- Right Leaderboard Section -->
+     <div class="leaderboard">
+         <div class="leaderboard-title">Leaderboard</div>
+         <ul id="leaderboardList"></ul>
+     </div>
+         <div class="right-section">
+             <!-- Buttons -->
+             <div class="buttons">
+                 <a href="#" class="attributes">Attributes</a>
+                 <a href="#" class="socials">Socials</a>
+                 <a href="#" class="profile-btn">Profile</a>
+                 <a href="#" class="logout-btn">Logout</a>
+             </div>
+ 
+     <!-- Login/Register Panel -->
+     <div id="authSection">
+         <a href="login.html">Login</a> | <a href="register.html">Register</a>
+             <!-- Leaderboard -->
+             <div class="leaderboard">
+                 <div class="leaderboard-title">Leaderboard</div>
+                 <div class="leaderboard-content">
+                     <!-- Leaderboard Data (populate dynamically) -->
+                 </div>
+             </div>
+         </div>
+     </div>
+ 
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+     <script src="script.js"></script>
+ </body>
+ </html>
