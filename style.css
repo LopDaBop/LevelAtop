@@ -53,40 +53,44 @@ body {
     margin: 0 auto 5px; 
 }
 
-/* Center Button */
-.attributes {
-    display: inline-block;
+/* NEW: Centered Main Buttons Section */
+.main-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+/* All Centered Buttons Style */
+.main-buttons a {
     font-size: 48px;
     padding: 30px 60px;
     background-color: #e67e22;
     color: white;
     text-decoration: none;
     border-radius: 20px;
-    text-align: center;
     border: none;
     cursor: pointer;
+    display: inline-block;
 }
 
-/* Center Button 2 */
-.social {
-    display: inline-block;
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 48px;
-    padding: 30px 60px;
+/* Unique Button Colors */
+.main-buttons a.attributes {
+    background-color: #2ecc71;
+}
+.main-buttons a.social {
     background-color: #7ce44c;
-    color: white;
-    text-decoration: none;
-    border-radius: 20px;
-    text-align: center;
-    border: none;
-    cursor: pointer;
+}
+.main-buttons a.profile {
+    background-color: #3498db;
+}
+.main-buttons a.logout {
+    background-color: #e74c3c;
 }
 
 /* Leaderboard Section */
@@ -215,7 +219,7 @@ canvas {
         padding: 10px 16px;
     }
 
-    .attributes, .social {
+    .main-buttons a {
         font-size: 32px;
         padding: 20px 40px;
     }
