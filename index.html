@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>LevelAtop</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script>
-        // Redirect early if user not logged in
-        const user = JSON.parse(localStorage.getItem('user'));
-        if (!user) {
+        // Check login on page load
+        if (!localStorage.getItem("loggedInUser")) {
             window.location.href = "login.html";
         }
     </script>
 </head>
-<body onload="loadUser()">
+<body>
     <div class="title">LevelAtop</div>
 
     <!-- Left Top Section -->
@@ -37,15 +36,6 @@
         <button onclick="logoutUser()" class="logout-button">Logout</button>
     </div>
 
-    <!-- Hidden Attribute Panel -->
-    <div id="attributePanel">
-        <label>Intelligence: <input type="number" id="attrInt" min="0" max="10"></label><br>
-        <label>Knowledge: <input type="number" id="attrKnow" min="0" max="10"></label><br>
-        <label>Strength: <input type="number" id="attrStr" min="0" max="10"></label><br>
-        <label>Health: <input type="number" id="attrHlth" min="0" max="10"></label><br>
-        <button onclick="saveAttributes()">Save</button>
-    </div>
-
     <!-- Leaderboard Section -->
     <div class="leaderboard">
         <div class="leaderboard-title">Leaderboard</div>
@@ -54,25 +44,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
-    <script>
-        function loadUser() {
-            const user = JSON.parse(localStorage.getItem('user'));
-            if (!user) return; // Already redirected above
-
-            const profileName = document.getElementById("profileName");
-            const profileLevel = document.getElementById("profileLevel");
-            if (profileName && user.username) {
-                profileName.textContent = user.username;
-            }
-            if (profileLevel && user.level !== undefined) {
-                profileLevel.textContent = `Level: ${user.level}`;
-            }
-        }
-
-        function logoutUser() {
-            localStorage.removeItem('user');
-            window.location.href = "login.html";
-        }
-    </script>
 </body>
 </html>
