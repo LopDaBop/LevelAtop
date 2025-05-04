@@ -7,9 +7,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="loadUser()">
-    
-    <!-- Page Title -->
+
     <div class="title">LevelAtop</div>
+
+    <!-- Left Top Section -->
+    <div class="radial">
+        <canvas id="radarChart"></canvas>
+        <div>Web Radial</div>
+    </div>
+
+    <!-- Left Bottom Section -->
+    <div class="profile">
+        <img src="profile.jpeg" alt="Profile Image">
+        <div id="profileName">Guest</div>
+        <div id="profileLevel">Level: 0</div>
+    </div>
 
     <!-- Main Centered Buttons -->
     <div class="main-buttons">
@@ -19,26 +31,7 @@
         <button onclick="logoutUser()" class="logout-button">Logout</button>
     </div>
 
-    <!-- Optional: Remove or enable these sections depending on your design -->
-    <!-- Radar Chart Section (optional) -->
-    <!--
-    <div class="radial">
-        <canvas id="radarChart"></canvas>
-        <div>Web Radial</div>
-    </div>
-    -->
-
-    <!-- Profile Section (hidden on main if redundant) -->
-    <!--
-    <div class="profile">
-        <img src="profile.jpeg" alt="Profile Image">
-        <div id="profileName">Guest</div>
-        <div id="profileLevel">Level: 0</div>
-    </div>
-    -->
-
-    <!-- Hidden Attribute Panel (optional UI section) -->
-    <!--
+    <!-- Attribute Panel (optional floating panel for quick input) -->
     <div id="attributePanel">
         <label>Intelligence: <input type="number" id="attrInt" min="0" max="10"></label><br>
         <label>Knowledge: <input type="number" id="attrKnow" min="0" max="10"></label><br>
@@ -46,15 +39,14 @@
         <label>Health: <input type="number" id="attrHlth" min="0" max="10"></label><br>
         <button onclick="saveAttributes()">Save</button>
     </div>
-    -->
 
-    <!-- Leaderboard Section -->
+    <!-- Right Leaderboard Section -->
     <div class="leaderboard">
         <div class="leaderboard-title">Leaderboard</div>
         <ul id="leaderboardList"></ul>
     </div>
 
-    <!-- Login/Register Links -->
+    <!-- Login/Register Panel -->
     <div id="authSection">
         <a href="login.html">Login</a> | <a href="register.html">Register</a>
     </div>
