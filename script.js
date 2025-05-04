@@ -183,3 +183,16 @@ function logoutUser() {
   localStorage.removeItem("loggedInUser");
   window.location.href = "login.html";
 }
+
+function logoutUser() {
+    localStorage.removeItem("loggedInUser");
+    window.location.href = "login.html";
+}
+
+function loadUser() {
+    const user = localStorage.getItem("loggedInUser");
+    if (user) {
+        const profileName = document.getElementById("profileName");
+        profileName.textContent = JSON.parse(user).username || "User";
+    }
+}
