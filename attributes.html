@@ -28,7 +28,18 @@
     </div>
   </div>
 
+
   <script>
+    window.onload = function() {
+        // Check if the user is logged in
+        const loggedInUser = localStorage.getItem("loggedInUser");
+
+        // If there is no logged-in user, redirect to login page
+        if (!loggedInUser) {
+            window.location.href = "login.html";
+        }
+    }
+    
     function goBack() {
       window.location.href = "index.html";
     }
