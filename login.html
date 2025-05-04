@@ -18,20 +18,28 @@
             Don't have an account? <a href="register.html">Register</a>
         </div>
     </div>
+
     <script>
         function handleLogin(e) {
             e.preventDefault();
             const username = document.getElementById("loginUsername").value;
             const password = document.getElementById("loginPassword").value;
 
+            // Retrieve users from localStorage, or initialize if empty
             const users = JSON.parse(localStorage.getItem("users") || "[]");
+
+            // Check if user exists with the given username and password
             const found = users.find(u => u.username === username && u.password === password);
 
             if (found) {
+                // Save the logged-in user to localStorage
                 localStorage.setItem("loggedInUser", JSON.stringify(found));
+
+                // Redirect to index page
                 window.location.href = "index.html";
             } else {
-                alert("Invalid credentials");
+                // Invalid credentials
+                alert("Invalid credentials, please try again.");
             }
         }
     </script>
