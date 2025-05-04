@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LevelAtop</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        // Redirect early if user not logged in
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user) {
+            window.location.href = "login.html";
+        }
+    </script>
 </head>
 <body onload="loadUser()">
     <div class="title">LevelAtop</div>
@@ -20,7 +27,6 @@
         <img src="profile.jpeg" alt="Profile Image">
         <div id="profileName">Guest</div>
         <div id="profileLevel">Level: 0</div>
-        <!-- Removed the old logout button from here -->
     </div>
 
     <!-- Center Buttons -->
@@ -28,7 +34,6 @@
         <a href="attributes.html" class="attributes">Attributes</a>
         <a href="social.html" class="social">Social</a>
         <a href="profile.html" class="profile-button">Profile</a>
-        <!-- Correct logout button: now a button element -->
         <button onclick="logoutUser()" class="logout-button">Logout</button>
     </div>
 
@@ -47,12 +52,27 @@
         <ul id="leaderboardList"></ul>
     </div>
 
-    <!-- Auth Links -->
-    <div id="authSection">
-        <a href="login.html">Login</a> | <a href="register.html">Register</a>
-    </div>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
+    <script>
+        function loadUser() {
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (!user) return; // Already redirected above
+
+            const profileName = document.getElementById("profileName");
+            const profileLevel = document.getElementById("profileLevel");
+            if (profileName && user.username) {
+                profileName.textContent = user.username;
+            }
+            if (profileLevel && user.level !== undefined) {
+                profileLevel.textContent = `Level: ${user.level}`;
+            }
+        }
+
+        function logoutUser() {
+            localStorage.removeItem('user');
+            window.location.href = "login.html";
+        }
+    </script>
 </body>
 </html>
