@@ -6,17 +6,22 @@ const defaultAttributes = {
 };
 
 function saveUser(user) {
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
 }
 
 function loadUser() {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
     if (user) {
-        document.getElementById('profileName').innerText = user.name;
-        document.getElementById('profileLevel').innerText = `Level: ${getUserLevel(user)}`;
-        document.getElementById('authSection').style.display = 'none';
-        renderRadar(user.attributes);
-        updateLeaderboard(user);
+        const profileName = document.getElementById("profileName");
+        if (profileName) {
+            profileName.textContent = user.name || "User";
+        }
+        if (user.attributes) {
+            renderRadar(user.attributes);
+            updateLeaderboard(user);
+        } else {
+            renderRadar(defaultAttributes);
+        }
     } else {
         renderRadar(defaultAttributes);
     }
@@ -38,7 +43,7 @@ function loginUser(event) {
     const name = document.getElementById("loginName").value;
     const user = {
         name: name,
-        attributes: { ...defaultAttributes } // Later: load from backend or local
+        attributes: { ...defaultAttributes }
     };
     saveUser(user);
     window.location.href = "index.html";
@@ -77,7 +82,6 @@ function renderRadar(attributes) {
     });
 }
 
-
 function updateLeaderboard(currentUser) {
     let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
     leaderboard = leaderboard.filter(user => user.name !== currentUser.name);
@@ -96,7 +100,7 @@ function updateLeaderboard(currentUser) {
 }
 
 function openAttributes() {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
     if (!user) return;
 
     document.getElementById('attrInt').value = user.attributes.Intelligence;
@@ -108,21 +112,22 @@ function openAttributes() {
 }
 
 function saveAttributes() {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
     if (!user) return;
 
-    user.attributes.Intelligence = parseInt(document.getElementById('attrInt').value);
-    user.attributes.Knowledge = parseInt(document.getElementById('attrKnow').value);
-    user.attributes.Strength = parseInt(document.getElementById('attrStr').value);
-    user.attributes.Health = parseInt(document.getElementById('attrHlth').value);
+    user.attributes.Intelligence = parseInt(document.getElementById("intelligence").value);
+    user.attributes.Knowledge = parseInt(document.getElementById("knowledge").value);
+    user.attributes.Strength = parseInt(document.getElementById("strength").value);
+    user.attributes.Health = parseInt(document.getElementById("health").value);
 
-    saveUser(user);
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
+    alert("Attributes saved!");
     location.reload();
 }
-// For attributes.html only
+
 if (document.getElementById("attributeRadar")) {
     const ctx = document.getElementById("attributeRadar").getContext("2d");
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
 
     const attributes = user?.attributes || {
         Intelligence: 0,
@@ -163,36 +168,7 @@ function goBack() {
     window.location.href = "index.html";
 }
 
-function saveAttributes() {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (!user) return;
-
-    user.attributes.Intelligence = parseInt(document.getElementById("intelligence").value);
-    user.attributes.Knowledge = parseInt(document.getElementById("knowledge").value);
-    user.attributes.Strength = parseInt(document.getElementById("strength").value);
-    user.attributes.Health = parseInt(document.getElementById("health").value);
-
-    localStorage.setItem("user", JSON.stringify(user));
-    alert("Attributes saved!");
-
-    // Reload chart with new data
-    location.reload();
-}
-
-function logoutUser() {
-  localStorage.removeItem("loggedInUser");
-  window.location.href = "login.html";
-}
-
 function logoutUser() {
     localStorage.removeItem("loggedInUser");
     window.location.href = "login.html";
-}
-
-function loadUser() {
-    const user = localStorage.getItem("loggedInUser");
-    if (user) {
-        const profileName = document.getElementById("profileName");
-        profileName.textContent = JSON.parse(user).username || "User";
-    }
 }
