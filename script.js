@@ -196,11 +196,3 @@ function loadUser() {
         profileName.textContent = JSON.parse(user).username || "User";
     }
 }
-function checkAuthentication() {
-    const user = localStorage.getItem('user');
-    if (!user) {
-        // User is not authenticated, redirect to login page
-        window.location.replace('login.html');
-    }
-}
-
