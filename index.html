@@ -5,30 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>LevelAtop</title>
     <link rel="stylesheet" href="style.css" />
-    <script>
-        // Check login on page load
-        if (!localStorage.getItem("loggedInUser")) {
-            window.location.href = "login.html";
-        }
-    </script>
 </head>
 <body onload="checkAuthentication(); loadUser();">
     <div class="title">LevelAtop</div>
 
-    <!-- Left Top Section -->
     <div class="radial">
         <canvas id="radarChart"></canvas>
         <div>Web Radial</div>
     </div>
 
-    <!-- Left Bottom Section -->
     <div class="profile">
         <img src="profile.jpeg" alt="Profile Image">
         <div id="profileName">Guest</div>
         <div id="profileLevel">Level: 0</div>
     </div>
 
-    <!-- Center Buttons -->
     <div class="main-buttons">
         <a href="attributes.html" class="attributes">Attributes</a>
         <a href="social.html" class="social">Social</a>
@@ -36,13 +27,13 @@
         <button onclick="logoutUser()" class="logout-button">Logout</button>
     </div>
 
-    <!-- Leaderboard Section -->
     <div class="leaderboard">
         <div class="leaderboard-title">Leaderboard</div>
         <ul id="leaderboardList"></ul>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="auth.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
