@@ -1,39 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>LevelAtop</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LevelAtop - Home</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body onload="checkAuthentication(); loadUser();">
-    <div class="title">LevelAtop</div>
+<body>
+  <header>
+    <h1>Welcome to LevelAtop</h1>
+    <div class="nav-buttons">
+      <a href="attributes.html">Attributes</a>
+      <a href="socials.html">Socials</a>
+      <a href="profile.html">Profile</a>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </header>
 
-    <div class="radial">
-        <canvas id="radarChart"></canvas>
-        <div>Web Radial</div>
+  <main>
+    <div id="profile-info">
+      <h2 id="username">User</h2>
+      <p id="user-level">Level 0</p>
     </div>
 
-    <div class="profile">
-        <img src="profile.jpeg" alt="Profile Image">
-        <div id="profileName">Guest</div>
-        <div id="profileLevel">Level: 0</div>
+    <div id="level-progress">
+      <h3>Closest Attribute to Leveling Up</h3>
+      <p id="closest-attribute-label">Loading...</p>
+      <div class="xp-bar">
+        <div class="xp-fill" id="xp-fill"></div>
+      </div>
     </div>
+  </main>
 
-    <div class="main-buttons">
-        <a href="attributes.html" class="attributes">Attributes</a>
-        <a href="social.html" class="social">Social</a>
-        <a href="profile.html" class="profile-button">Profile</a>
-        <button onclick="logoutUser()" class="logout-button">Logout</button>
-    </div>
+  <script>
+    function logout() {
+      localStorage.removeItem("currentUser");
+      window.location.href = "login.html";
+    }
 
-    <div class="leaderboard">
-        <div class="leaderboard-title">Leaderboard</div>
-        <ul id="leaderboardList"></ul>
-    </div>
+    function findClosestLevelingAttribute(attributes) {
+      let minRemainingXP = Infinity;
+      let closestAttribute = null;
+      let currentXP = 0;
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="auth.js"></script>
-    <script src="script.js"></script>
+      for (const attr in attributes) {
+        const xp = attributes[attr];
+        const remainder = 770 - (xp % 770 || 770);
+        if (remainder < minRemainingXP) {
+          minRemainingXP = remainder;
+          closestAttribute = attr;
+          currentXP = xp % 770;
+        }
+      }
+
+      return { closestAttribute, currentXP };
+    }
+
+    function renderClosestLevelingAttribute() {
+      const currentUser = localStorage.getItem("currentUser");
+      if (!currentUser) return;
+
+      const userData = JSON.parse(localStorage.getItem(currentUser));
+      const attributes = userData.attributes || {};
+
+      const { closestAttribute, currentXP } = findClosestLevelingAttribute(attributes);
+
+      if (closestAttribute) {
+        const percent = Math.round((currentXP / 770) * 100);
+        document.getElementById("closest-attribute-label").textContent =
+          `${closestAttribute} - ${currentXP} / 770 XP`;
+        document.getElementById("xp-fill").style.width = `${percent}%`;
+      } else {
+        document.getElementById("closest-attribute-label").textContent =
+          "No attributes available.";
+        document.getElementById("xp-fill").style.width = `0%`;
+      }
+    }
+
+    function renderUserInfo() {
+      const currentUser = localStorage.getItem("currentUser");
+      if (!currentUser) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      const userData = JSON.parse(localStorage.getItem(currentUser));
+      document.getElementById("username").textContent = userData.username;
+
+      const totalXP = Object.values(userData.attributes || {}).reduce((sum, xp) => sum + xp, 0);
+      const level = Math.floor(totalXP / 770);
+      document.getElementById("user-level").textContent = `Level ${level}`;
+    }
+
+    renderUserInfo();
+    renderClosestLevelingAttribute();
+  </script>
 </body>
 </html>
