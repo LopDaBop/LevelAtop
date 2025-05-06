@@ -1,47 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LevelAtop</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LevelAtop - Home</title>
+  <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
   <header>
+    <h1>LevelAtop</h1>
     <nav>
-      <button id="homeButton">Home</button>
-      <button id="attributesButton">Attributes</button>
-      <button id="socialsButton">Socials</button>
-      <button id="profileButton">Profile</button>
-      <button id="logoutButton">Logout</button>
+      <button onclick="navigate('attributes.html')">Attributes</button>
+      <button onclick="navigate('socials.html')">Socials</button>
+      <button onclick="navigate('profile.html')">Profile</button>
+      <button onclick="logout()">Logout</button>
     </nav>
   </header>
 
-  <main id="mainContent">
-    <!-- Profile Section -->
-    <section id="profileSection">
-      <h2>Welcome, <span id="username">User</span></h2>
-      <p>Level: <span id="userLevel">1</span></p>
-      <div id="xpBarContainer">
-        <div id="xpBar"></div>
-        <p id="xpText">XP: <span id="currentXP">0</span></p>
+  <main>
+    <section id="xp-section">
+      <h2 id="xp-title">Closest Attribute Progress</h2>
+      <div id="xp-bar-container">
+        <div id="xp-bar"><span id="xp-fill"></span></div>
+        <p id="xp-value">0 / 770</p>
       </div>
     </section>
 
-    <!-- XP Bar (Closest Attribute to Leveling Up) -->
-    <section id="xpSection">
-      <h3>XP Progress</h3>
-      <p id="currentAttribute">Closest Attribute to Leveling Up: Strength</p>
-      <div id="attributeXPBar"></div>
+    <section id="leaderboard">
+      <h2>Leaderboard</h2>
+      <ul id="leaderboard-list"></ul>
     </section>
-
-    <!-- The rest of your content, e.g., Leaderboard, etc. -->
   </main>
 
-  <footer>
-    <!-- Footer content -->
-  </footer>
-
-  <script src="script.js"></script>
+  <script src="../js/script.js"></script>
 </body>
 </html>
