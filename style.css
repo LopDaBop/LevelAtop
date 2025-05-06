@@ -101,6 +101,12 @@ main {
   text-align: right;
 }
 
-.profile-info p {
-  margin: 5px 0;
+/* Attributes Page Background Fix */
+.attributes-page {
+  background-color: #2f4f2f; /* Green background as requested */
+}
+
+/* Home button fix */
+.nav-buttons button:first-child {
+  background-color: #00ff99; /* Green home button */
 }
