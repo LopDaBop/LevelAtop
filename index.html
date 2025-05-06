@@ -1,74 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LevelAtop</title>
-  <style>
-    body {
-      margin: 0;
-      background-color: #121212;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-    }
-    main {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-    .profile {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      background-color: #1e1e1e;
-      padding: 15px;
-      border-radius: 10px;
-      font-size: 16px;
-    }
-    button {
-      margin-top: 10px;
-      background-color: #bb86fc;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <main>
-    <h1>Welcome to LevelAtop</h1>
-  </main>
-
-  <div class="profile" id="profileSection">
-    <div id="usernameDisplay"></div>
-    <div id="levelDisplay"></div>
-    <button onclick="logout()">Logout</button>
-  </div>
-
-  <script>
-    const currentUser = localStorage.getItem("currentUser");
-    const userData = currentUser ? JSON.parse(localStorage.getItem(currentUser)) : null;
-
-    if (!currentUser || !userData) {
-      window.location.href = "login.html";
-    } else {
-      document.getElementById("usernameDisplay").innerText = `User: ${currentUser}`;
-      const totalXP = Object.values(userData.attributes).reduce((a, b) => a + b, 0);
-      const level = Math.floor(totalXP / 770);
-      document.getElementById("levelDisplay").innerText = `Level: ${level}`;
-    }
-
-    function logout() {
-      localStorage.removeItem("currentUser");
-      window.location.href = "login.html";
-    }
-  </script>
-</body>
-</html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+     <title>LevelAtop</title>
+     <link rel="stylesheet" href="style.css" />
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <title>LevelAtop - Home</title>
+   <link rel="stylesheet" href="styles.css" />
+ </head>
+ <body onload="checkAuthentication(); loadUser();">
+     <div class="title">LevelAtop</div>
+ 
+     <div class="radial">
+         <canvas id="radarChart"></canvas>
+         <div>Web Radial</div>
+ <body>
+   <header>
+     <h1>Welcome to LevelAtop</h1>
+     <div class="nav-buttons">
+       <a href="attributes.html">Attributes</a>
+       <a href="socials.html">Socials</a>
+       <a href="profile.html">Profile</a>
+       <button onclick="logout()">Logout</button>
+     </div>
+   </header>
+ 
+     <div class="profile">
+         <img src="profile.jpeg" alt="Profile Image">
+         <div id="profileName">Guest</div>
+         <div id="profileLevel">Level: 0</div>
+   <main>
+     <div id="profile-info">
+       <h2 id="username">User</h2>
+       <p id="user-level">Level 0</p>
+     </div>
+ 
+     <div class="main-buttons">
+         <a href="attributes.html" class="attributes">Attributes</a>
+         <a href="social.html" class="social">Social</a>
+         <a href="profile.html" class="profile-button">Profile</a>
+         <button onclick="logoutUser()" class="logout-button">Logout</button>
+     <div id="level-progress">
+       <h3>Closest Attribute to Leveling Up</h3>
+       <p id="closest-attribute-label">Loading...</p>
+       <div class="xp-bar">
+         <div class="xp-fill" id="xp-fill"></div>
+       </div>
+     </div>
+   </main>
+ 
+     <div class="leaderboard">
+         <div class="leaderboard-title">Leaderboard</div>
+         <ul id="leaderboardList"></ul>
+     </div>
+   <script>
+     function logout() {
+       localStorage.removeItem("currentUser");
+       window.location.href = "login.html";
+     }
+ 
+     function findClosestLevelingAttribute(attributes) {
+       let minRemainingXP = Infinity;
+       let closestAttribute = null;
+       let currentXP = 0;
+ 
+       for (const attr in attributes) {
+         const xp = attributes[attr];
+         const remainder = 770 - (xp % 770 || 770);
+         if (remainder < minRemainingXP) {
+           minRemainingXP = remainder;
+           closestAttribute = attr;
+           currentXP = xp % 770;
+         }
+       }
+ 
+       return { closestAttribute, currentXP };
+     }
+ 
+     function renderClosestLevelingAttribute() {
+       const currentUser = localStorage.getItem("currentUser");
+       if (!currentUser) return;
+ 
+       const userData = JSON.parse(localStorage.getItem(currentUser));
+       const attributes = userData.attributes || {};
+ 
+       const { closestAttribute, currentXP } = findClosestLevelingAttribute(attributes);
+ 
+       if (closestAttribute) {
+         const percent = Math.round((currentXP / 770) * 100);
+         document.getElementById("closest-attribute-label").textContent =
+           `${closestAttribute} - ${currentXP} / 770 XP`;
+         document.getElementById("xp-fill").style.width = `${percent}%`;
+       } else {
+         document.getElementById("closest-attribute-label").textContent =
+           "No attributes available.";
+         document.getElementById("xp-fill").style.width = `0%`;
+       }
+     }
+ 
+     function renderUserInfo() {
+       const currentUser = localStorage.getItem("currentUser");
+       if (!currentUser) {
+         window.location.href = "login.html";
+         return;
+       }
+ 
+       const userData = JSON.parse(localStorage.getItem(currentUser));
+       document.getElementById("username").textContent = userData.username;
+ 
+       const totalXP = Object.values(userData.attributes || {}).reduce((sum, xp) => sum + xp, 0);
+       const level = Math.floor(totalXP / 770);
+       document.getElementById("user-level").textContent = `Level ${level}`;
+     }
+ 
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+     <script src="auth.js"></script>
+     <script src="script.js"></script>
+     renderUserInfo();
+     renderClosestLevelingAttribute();
+   </script>
+ </body>
+ </html>
