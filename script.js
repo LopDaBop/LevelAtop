@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('username-display').textContent = `User: ${currentUser}`;
   document.getElementById('level-display').textContent = `Level: ${level}`;
 
-  // Update leaderboard
+  // Leaderboard
   const leaderboardEl = document.getElementById('leaderboard');
   const sortedUsers = Object.entries(users).sort((a, b) => {
     const totalA = Object.values(a[1].attributes || {}).reduce((x, y) => x + y, 0);
