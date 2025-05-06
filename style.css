@@ -1,70 +1,93 @@
-/* General body styles */
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
+  background: #0d0d0d;
+  color: white;
+  font-family: Arial, sans-serif;
 }
 
-/* Header and Navigation */
 header {
-  background-color: #333;
-  padding: 10px;
-  text-align: center;
+  background: #111;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
 }
 
-nav button {
-  background-color: #4CAF50; /* Green buttons */
-  color: white;
+nav button,
+header button {
+  background: #1db954;
   border: none;
-  padding: 10px;
-  margin: 5px;
-  cursor: pointer;
-}
-
-nav button:hover {
-  background-color: #45a049;
-}
-
-/* Profile Section */
-#profileSection {
-  background-color: #4CAF50; /* Green background */
   color: white;
+  padding: 8px 12px;
+  margin: 0 4px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+main {
   padding: 20px;
-  text-align: center;
 }
 
-#xpBarContainer {
+#xp-bar-container {
   width: 100%;
-  height: 20px;
-  background-color: #ddd;
+  max-width: 500px;
+  background: #333;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
-#xpBar {
+#xp-bar {
+  height: 25px;
+  background: #555;
+  position: relative;
+}
+
+#xp-fill {
+  background: #1db954;
   height: 100%;
-  background-color: #4CAF50;
+  width: 0%;
+  display: block;
 }
 
-#xpText {
-  font-size: 16px;
-  margin-top: 10px;
+#leaderboard ul {
+  list-style: none;
+  padding: 0;
 }
 
-/* XP bar progress for attribute */
-#attributeXPBar {
-  height: 20px;
-  background-color: #45a049;
+.attribute-page {
+  display: flex;
+  gap: 30px;
+  padding: 20px;
 }
 
-/* Other sections (e.g., attributes page) */
-#xpSection {
-  margin: 20px;
-  text-align: center;
+#attribute-inputs input {
+  margin: 5px 0;
 }
 
-footer {
-  text-align: center;
+.socials-container {
+  display: flex;
+  height: 80vh;
+}
+
+.friends-panel {
+  width: 30%;
+  background: #1a1a1a;
   padding: 10px;
-  background-color: #333;
+}
+
+.socials-content {
+  width: 70%;
+  background: #2a2a2a;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#search-bar-container input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  background: #444;
   color: white;
 }
