@@ -204,3 +204,80 @@ main {
 }
 
 /* Leave radar, leaderboard, and everything else untouched */
+
+/* === Only Additions for index.html XP/Profile Layout === */
+
+body {
+  background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
+  color: #f0f0f0;
+}
+
+.main-grid {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  flex-wrap: wrap;
+}
+
+.left-panel {
+  flex: 1;
+  min-width: 280px;
+  margin-right: 20px;
+}
+
+#level-progress {
+  background: #252525;
+  border: 1px solid #444;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 255, 100, 0.2);
+}
+
+#level-progress h3 {
+  margin-top: 0;
+  color: #72ff72;
+}
+
+.xp-bar {
+  background-color: #333;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 20px;
+  margin-top: 10px;
+}
+
+.xp-fill {
+  background: linear-gradient(to right, #72ff72, #00cc44);
+  height: 100%;
+  width: 0%;
+  transition: width 0.4s ease-in-out;
+}
+
+#profile-info {
+  background: #252525;
+  border: 1px solid #444;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 255, 100, 0.2);
+}
+
+#profile-info h2 {
+  margin: 0;
+  color: #00ff99;
+}
+
+#user-level {
+  font-size: 1.2em;
+  color: #ffffff;
+}
+
+.radial,
+.leaderboard {
+  flex: 2;
+  min-width: 300px;
+}
+
+/* Keeps attributes and other pages visually intact */
+
