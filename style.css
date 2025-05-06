@@ -1,112 +1,70 @@
-/* General Styling */
+/* General body styles */
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #121212;
-  color: #ffffff;
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #f4f4f4;
 }
 
+/* Header and Navigation */
 header {
-  text-align: center;
-  padding: 20px 0;
-  background-color: #1f1f1f;
-}
-
-.nav-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.nav-buttons button {
-  background-color: #1f1f1f;
-  color: #00ff99;
-  border: 1px solid #00ff99;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.nav-buttons button:hover {
-  background-color: #00ff99;
-  color: #121212;
-}
-
-main {
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.xp-section {
-  width: 80%;
-  max-width: 600px;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-#xp-bar-container {
-  width: 100%;
   background-color: #333;
-  border: 2px solid #00ff99;
-  border-radius: 20px;
-  height: 30px;
-  margin-top: 10px;
-  position: relative;
-}
-
-#xp-bar {
-  background: linear-gradient(90deg, #00ff99, #00ccff);
-  height: 100%;
-  width: 0%;
-  border-radius: 20px;
-  transition: width 0.5s ease-in-out;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  color: #121212;
-}
-
-.leaderboard-section {
-  width: 80%;
-  max-width: 600px;
-  margin-top: 20px;
-}
-
-#leaderboard {
-  list-style: none;
-  padding: 0;
-}
-
-#leaderboard li {
-  background-color: #1e1e1e;
-  margin: 10px 0;
   padding: 10px;
-  border-left: 4px solid #00ff99;
+  text-align: center;
 }
 
-.profile-info {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #1f1f1f;
-  border: 1px solid #00ff99;
-  padding: 15px;
-  border-radius: 10px;
-  text-align: right;
+nav button {
+  background-color: #4CAF50; /* Green buttons */
+  color: white;
+  border: none;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
 }
 
-/* Attributes Page Background Fix */
-.attributes-page {
-  background-color: #2f4f2f; /* Green background as requested */
+nav button:hover {
+  background-color: #45a049;
 }
 
-/* Home button fix */
-.nav-buttons button:first-child {
-  background-color: #00ff99; /* Green home button */
+/* Profile Section */
+#profileSection {
+  background-color: #4CAF50; /* Green background */
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+#xpBarContainer {
+  width: 100%;
+  height: 20px;
+  background-color: #ddd;
+}
+
+#xpBar {
+  height: 100%;
+  background-color: #4CAF50;
+}
+
+#xpText {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+/* XP bar progress for attribute */
+#attributeXPBar {
+  height: 20px;
+  background-color: #45a049;
+}
+
+/* Other sections (e.g., attributes page) */
+#xpSection {
+  margin: 20px;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
 }
