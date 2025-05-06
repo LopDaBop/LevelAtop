@@ -4,113 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LevelAtop - Home</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css"/>
 </head>
-<body onload="checkAuthentication(); loadUser(); renderUserInfo(); renderClosestLevelingAttribute();">
-  <div class="title">LevelAtop</div>
-
+<body>
   <header>
-    <h1>Welcome to LevelAtop</h1>
     <div class="nav-buttons">
-      <a href="attributes.html">Attributes</a>
-      <a href="socials.html">Socials</a>
-      <a href="profile.html">Profile</a>
+      <button onclick="location.href='attributes.html'">Attributes</button>
+      <button onclick="location.href='socials.html'">Socials</button>
+      <button onclick="location.href='profile.html'">Profile</button>
       <button onclick="logout()">Logout</button>
     </div>
   </header>
 
-  <main class="main-grid">
-    <!-- Left Column: XP Progress and Profile Info -->
-    <div class="left-panel">
-      <div id="level-progress">
-        <h3>Closest Attribute to Leveling Up</h3>
-        <p id="closest-attribute-label">Loading...</p>
-        <div class="xp-bar">
-          <div class="xp-fill" id="xp-fill"></div>
-        </div>
+  <main>
+    <section class="xp-section">
+      <h2>Level Progress</h2>
+      <div id="xp-bar-container">
+        <div id="xp-bar"><span id="xp-label"></span></div>
       </div>
+    </section>
 
-      <div id="profile-info">
-        <h2 id="username">User</h2>
-        <p id="user-level">Level 0</p>
-      </div>
-    </div>
-
-    <!-- Right Column: Radar and Leaderboard -->
-    <div class="radial">
-      <canvas id="radarChart"></canvas>
-      <div>Web Radial</div>
-    </div>
-
-    <div class="leaderboard">
-      <div class="leaderboard-title">Leaderboard</div>
-      <ul id="leaderboardList"></ul>
-    </div>
+    <section class="leaderboard-section">
+      <h2>Leaderboard</h2>
+      <ul id="leaderboard"></ul>
+    </section>
   </main>
 
-  <script>
-    function logout() {
-      localStorage.removeItem("currentUser");
-      window.location.href = "login.html";
-    }
+  <div class="profile-info">
+    <p id="username-display"></p>
+    <p id="level-display"></p>
+  </div>
 
-    function findClosestLevelingAttribute(attributes) {
-      let minRemainingXP = Infinity;
-      let closestAttribute = null;
-      let currentXP = 0;
-
-      for (const attr in attributes) {
-        const xp = attributes[attr];
-        const remainder = 770 - (xp % 770 || 770);
-        if (remainder < minRemainingXP) {
-          minRemainingXP = remainder;
-          closestAttribute = attr;
-          currentXP = xp % 770;
-        }
-      }
-
-      return { closestAttribute, currentXP };
-    }
-
-    function renderClosestLevelingAttribute() {
-      const currentUser = localStorage.getItem("currentUser");
-      if (!currentUser) return;
-
-      const userData = JSON.parse(localStorage.getItem(currentUser));
-      const attributes = userData.attributes || {};
-
-      const { closestAttribute, currentXP } = findClosestLevelingAttribute(attributes);
-
-      if (closestAttribute) {
-        const percent = Math.round((currentXP / 770) * 100);
-        document.getElementById("closest-attribute-label").textContent =
-          `${closestAttribute} - ${currentXP} / 770 XP`;
-        document.getElementById("xp-fill").style.width = `${percent}%`;
-      } else {
-        document.getElementById("closest-attribute-label").textContent =
-          "No attributes available.";
-        document.getElementById("xp-fill").style.width = `0%`;
-      }
-    }
-
-    function renderUserInfo() {
-      const currentUser = localStorage.getItem("currentUser");
-      if (!currentUser) {
-        window.location.href = "login.html";
-        return;
-      }
-
-      const userData = JSON.parse(localStorage.getItem(currentUser));
-      document.getElementById("username").textContent = userData.username;
-
-      const totalXP = Object.values(userData.attributes || {}).reduce((sum, xp) => sum + xp, 0);
-      const level = Math.floor(totalXP / 770);
-      document.getElementById("user-level").textContent = `Level ${level}`;
-    }
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="auth.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
