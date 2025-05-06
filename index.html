@@ -19,14 +19,9 @@
     </div>
   </header>
 
-  <main>
-    <!-- Profile and XP Bar Section -->
-    <div class="top-section">
-      <div id="profile-info">
-        <h2 id="username">User</h2>
-        <p id="user-level">Level 0</p>
-      </div>
-
+  <main class="main-grid">
+    <!-- Left Column: XP Progress and Profile Info -->
+    <div class="left-panel">
       <div id="level-progress">
         <h3>Closest Attribute to Leveling Up</h3>
         <p id="closest-attribute-label">Loading...</p>
@@ -34,9 +29,14 @@
           <div class="xp-fill" id="xp-fill"></div>
         </div>
       </div>
+
+      <div id="profile-info">
+        <h2 id="username">User</h2>
+        <p id="user-level">Level 0</p>
+      </div>
     </div>
 
-    <!-- Keep radar and other layout untouched -->
+    <!-- Right Column: Radar and Leaderboard -->
     <div class="radial">
       <canvas id="radarChart"></canvas>
       <div>Web Radial</div>
