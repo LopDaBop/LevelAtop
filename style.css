@@ -1,3 +1,498 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+
+/* Title at the top */
+.title {
+    font-size: 48px;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* Left Top Section */
+.radial {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 450px;
+    height: 250px;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+/* Left Bottom Section */
+.profile {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 450px;
+    height: 250px;
+    padding: 10px;
+    background-color: #2ecc71;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+/* Image Styling for Left Sections */
+.radial img, .profile img {
+    width: 220px; 
+    height: 220px;
+    display: block; 
+    margin: 0 auto 5px; 
+}
+
+/* NEW: Centered Main Buttons Section */
+.main-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* All Centered Buttons Style */
+.main-buttons a {
+    font-size: 48px;
+    padding: 30px 60px;
+    background-color: #e67e22;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* Unique Button Colors */
+.main-buttons a.attributes {
+    background-color: #2ecc71;
+}
+.main-buttons a.social {
+    background-color: #7ce44c;
+}
+.main-buttons a.profile {
+    background-color: #3498db;
+}
+.main-buttons a.logout {
+    background-color: #e74c3c;
+}
+
+/* Leaderboard Section */
+.leaderboard {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    width: 250px;
+    height: 90%;
+    background-color: #754a04;
+    color: white;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.leaderboard-title {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Centered auth section */
+#authSection {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+#attributePanel {
+    position: absolute;
+    bottom: 70px;
+    left: 10px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    display: none;
+}
+
+/* Attributes Page Styling */
+.attr-page {
+    background-color: #eef3f7;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 30px 15px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.attribute-boxes {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.attribute {
+    background: #ffffff;
+    border: 2px solid #3498db;
+    border-radius: 12px;
+    padding: 15px;
+    font-size: 18px;
+    width: 100%;
+    max-width: 250px;
+    box-sizing: border-box;
+}
+
+.attribute input {
+    font-size: 16px;
+    width: 60px;
+    margin-left: 10px;
+}
+
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 18px;
+    background: #7ce44c;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.save-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.save-btn:hover {
+    background-color: #27ae60;
+}
+
+canvas {
+    max-width: 90vw;
+    height: auto;
+    margin-top: 30px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+    .attribute {
+        font-size: 16px;
+    }
+
+    .attribute input {
+        width: 50px;
+        font-size: 14px;
+    }
+
+    .save-btn, .back-btn {
+        font-size: 16px;
+        padding: 10px 16px;
+    }
+
+    .main-buttons a {
+        font-size: 32px;
+        padding: 20px 40px;
+    }
+
+    .radial, .profile {
+        width: 90vw;
+        height: auto;
+        position: static;
+        margin: 10px auto;
+    }
+
+    .leaderboard {
+        position: static;
+        width: 90vw;
+        margin: 20px auto;
+    }
+}
+
+.attributes-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px 20px;
+    min-height: 80vh;
+    gap: 40px;
+    box-sizing: border-box;
+}
+
+#attributeRadar {
+    max-width: 400px;
+    max-height: 400px;
+    width: 90vw;
+    height: auto;
+}
+
+.attribute-boxes.vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
+    min-width: 200px;
+}
+
+@media (max-width: 768px) {
+    .attributes-layout {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    #attributeRadar {
+        max-width: 300px;
+    }
+
+    .attribute-boxes.vertical {
+        align-items: center;
+    }
+}
+
+/* Login/Register Pages */
+.auth-page {
+    background: linear-gradient(120deg, #e67e22, #f1c40f, #2ecc71);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.auth-container {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.auth-form input {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.auth-form input:focus {
+    border-color: #3498db;
+}
+
+.auth-form button {
+    padding: 12px;
+    font-size: 18px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.auth-form button:hover {
+    background-color: #2980b9;
+}
+
+.auth-switch {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.auth-switch a {
+    color: #e67e22;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+.logout-button {
+    padding: 8px 16px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+    background-color: #c0392b;
+}
+
+/* Attribute Page Layout */
+.attribute-page-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    height: 80vh;
+    gap: 30px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.chart-section,
+.input-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+.chart-section canvas {
+    max-width: 100%;
+    height: auto;
+    flex: 1;
+}
+
+.input-section label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.input-section input {
+    width: 100%;
+    padding: 5px;
+    font-size: 16px;
+}
+
+/* Responsive: Stack vertically on mobile */
+@media screen and (max-width: 768px) {
+    .attribute-page-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .chart-section,
+    .input-section {
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .chart-section canvas {
+        height: 300px !important;
+    }
+}
+
+/* Main Page Buttons Layout */
+.main-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Unified button style */
+.main-buttons a,
+.main-buttons button {
+    font-size: 36px;
+    padding: 25px 60px;
+    text-decoration: none;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    width: 300px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+/* Individual button colors */
+.main-buttons .attributes {
+    background-color: #e67e22;
+}
+.main-buttons .social {
+    background-color: #7ce44c;
+}
+.main-buttons .profile-button {
+    background-color: #3498db;
+}
+.main-buttons .logout-button {
+    background-color: #e74c3c;
+}
+
+/* Hover effects */
+.main-buttons .attributes:hover {
+    background-color: #d35400;
+}
+.main-buttons .social:hover {
+    background-color: #58b031;
+}
+.main-buttons .profile-button:hover {
+    background-color: #2980b9;
+}
+.main-buttons .logout-button:hover {
+    background-color: #c0392b;
+}
+
+/* Responsive button sizing */
+@media (max-width: 600px) {
+    .main-buttons a,
+    .main-buttons button {
+        font-size: 28px;
+        padding: 20px 40px;
+        width: 90%;
+    }
+}
+
 #level-progress {
   width: 90%;
   max-width: 400px;
