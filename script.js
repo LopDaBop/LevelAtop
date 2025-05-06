@@ -1,73 +1,36 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // Elements
-  const usernameElement = document.getElementById('username');
-  const userLevelElement = document.getElementById('userLevel');
-  const xpBar = document.getElementById('xpBar');
-  const currentXPElement = document.getElementById('currentXP');
-  const currentAttributeElement = document.getElementById('currentAttribute');
-  const attributeXPBar = document.getElementById('attributeXPBar');
+function navigate(page) {
+  window.location.href = `../html/${page}`;
+}
 
-  // Restore user data from localStorage
-  const user = JSON.parse(localStorage.getItem('currentUser'));
-  const attributes = JSON.parse(localStorage.getItem('attributes'));
+function logout() {
+  localStorage.removeItem("currentUser");
+  window.location.href = "../html/login.html";
+}
 
-  if (user) {
-    usernameElement.textContent = user.username;
-    userLevelElement.textContent = user.level;
+document.addEventListener("DOMContentLoaded", () => {
+  const user = JSON.parse(localStorage.getItem("currentUser"));
+  if (!user) {
+    window.location.href = "../html/login.html";
+    return;
   }
 
-  // Update XP Bar and Attribute progress
-  const updateXPProgress = () => {
-    let totalXP = 0;
-    let closestAttribute = '';
+  if (document.getElementById("profile-username")) {
+    document.getElementById("profile-username").textContent = `Username: ${user.username}`;
+    document.getElementById("profile-level").textContent = `Level: ${Math.floor(user.totalXP / 770)}`;
+  }
 
-    // Calculate total XP and find the closest attribute to leveling up
-    for (let key in attributes) {
-      totalXP += attributes[key].xp;
-      if (!closestAttribute || attributes[key].xp < 770) {
-        closestAttribute = key;
-      }
-    }
+  if (document.getElementById("xp-fill")) {
+    const xpVals = Object.values(user.attributes || {});
+    const closest = Math.min(...xpVals.map(x => 770 - x));
+    const attribute = Object.keys(user.attributes).find(attr => 770 - user.attributes[attr] === closest);
+    const progress = ((user.attributes[attribute] || 0) / 770) * 100;
+    document.getElementById("xp-fill").style.width = `${progress}%`;
+    document.getElementById("xp-value").textContent = `${user.attributes[attribute] || 0} / 770`;
+  }
 
-    // Update XP display
-    currentXPElement.textContent = totalXP;
-    xpBar.style.width = `${(totalXP / 770) * 100}%`;
-
-    // Display closest attribute to level up
-    currentAttributeElement.textContent = `Closest Attribute to Leveling Up: ${closestAttribute}`;
-
-    // Update the closest attribute XP bar
-    attributeXPBar.style.width = `${(attributes[closestAttribute].xp / 770) * 100}%`;
-  };
-
-  updateXPProgress();
-
-  // Handle login (making sure it's stored and checks when logged out)
-  const loginUser = () => {
-    const loginDetails = {
-      username: 'User', // replace with dynamic login details
-      level: 1, // set initial level
-    };
-    localStorage.setItem('currentUser', JSON.stringify(loginDetails));
-    window.location.href = 'index.html';
-  };
-
-  // Handle Logout
-  document.getElementById('logoutButton').addEventListener('click', () => {
-    localStorage.removeItem('currentUser');
-    window.location.href = 'login.html';
-  });
-
-  // Event listeners for buttons
-  document.getElementById('homeButton').addEventListener('click', () => {
-    window.location.href = 'index.html';
-  });
-
-  document.getElementById('attributesButton').addEventListener('click', () => {
-    window.location.href = 'attributes.html';
-  });
-
-  document.getElementById('profileButton').addEventListener('click', () => {
-    window.location.href = 'profile.html';
-  });
+  if (document.getElementById("leaderboard-list")) {
+    const users = JSON.parse(localStorage.getItem("allUsers")) || [];
+    const sorted = users.sort((a, b) => b.totalXP - a.totalXP).slice(0, 10);
+    document.getElementById("leaderboard-list").innerHTML = sorted.map(u => `<li>${u.username} - Lvl ${Math.floor(u.totalXP / 770)}</li>`).join("");
+  }
 });
