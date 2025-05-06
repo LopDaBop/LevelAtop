@@ -1,13 +1,13 @@
-/* === Main Layout Enhancements === */
+/* === Base Layout === */
 body {
-  background: linear-gradient(135deg, #1a1a2e, #16213e);
-  color: #e0e0e0;
+  background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
+  color: #f0f0f0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
 }
 
-/* Header Styling */
+/* === Header === */
 header {
   text-align: center;
   padding: 1.5rem 0;
@@ -34,58 +34,35 @@ header {
   cursor: pointer;
 }
 
-/* Title */
-.title {
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 1rem;
-  color: #ffffff;
-}
-
-/* === Top Section for Profile + XP Bar === */
-.top-section {
+/* === Profile + XP Section === */
+.main-grid {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 2rem;
-  padding: 2rem;
+  justify-content: space-between;
+  padding: 30px;
   flex-wrap: wrap;
 }
 
-/* Profile Info Styling */
-#profile-info {
-  background-color: #0d1b2a;
-  padding: 1rem 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
-  max-width: 250px;
-}
-#profile-info h2 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: #ffcc70;
-}
-#profile-info p {
-  font-size: 1.2rem;
-  margin-top: 0.5rem;
+.left-panel {
+  flex: 1;
+  min-width: 280px;
+  margin-right: 20px;
 }
 
-/* XP Progress Box */
+/* XP Progress */
 #level-progress {
-  flex: 1;
-  background-color: #112d4e;
-  padding: 1rem 1.5rem;
+  background: #252525;
+  border: 1px solid #444;
+  padding: 20px;
+  margin-bottom: 20px;
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
-  max-width: 600px;
+  box-shadow: 0 0 10px rgba(0, 255, 100, 0.2);
 }
 
 #level-progress h3 {
   margin-top: 0;
-  font-size: 1.4rem;
-  color: #f9f7f7;
+  color: #72ff72;
 }
+
 #closest-attribute-label {
   margin: 0.5rem 0 1rem;
   font-weight: 500;
@@ -93,22 +70,44 @@ header {
 
 /* XP Bar */
 .xp-bar {
-  width: 100%;
-  height: 24px;
-  background-color: #394867;
-  border-radius: 12px;
+  background-color: #333;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: inset 0 1px 4px rgba(0,0,0,0.3);
+  height: 20px;
+  margin-top: 10px;
 }
 .xp-fill {
+  background: linear-gradient(to right, #72ff72, #00cc44);
   height: 100%;
-  background: linear-gradient(to right, #00c9ff, #92fe9d);
   width: 0%;
-  transition: width 0.6s ease-in-out;
-  border-radius: 12px 0 0 12px;
+  transition: width 0.4s ease-in-out;
 }
 
-/* === Radar Chart and Leaderboard (unchanged layout, polished visually) === */
+/* Profile Info */
+#profile-info {
+  background: #252525;
+  border: 1px solid #444;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 255, 100, 0.2);
+  flex: 0 0 250px;
+}
+#profile-info h2 {
+  margin: 0;
+  color: #00ff99;
+}
+#user-level {
+  font-size: 1.2em;
+  color: #ffffff;
+}
+
+/* === Chart and Leaderboard === */
+.radial, .leaderboard {
+  flex: 2;
+  min-width: 300px;
+}
+
 .radial {
   padding: 2rem;
   text-align: center;
@@ -148,136 +147,3 @@ header {
   margin-bottom: 0.5rem;
   color: #e0e0e0;
 }
-
-/* === Minimal Enhancements for index.html left-side layout === */
-
-/* Place XP progress and profile info side by side */
-main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 2rem;
-  gap: 2rem;
-}
-
-/* Style for XP progress box */
-#level-progress {
-  flex: 1 1 300px;
-  max-width: 400px;
-  background-color: #f5f5f5;
-  padding: 1rem 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-
-/* XP bar visuals */
-.xp-bar {
-  width: 100%;
-  height: 20px;
-  background-color: #ddd;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-top: 0.5rem;
-}
-.xp-fill {
-  height: 100%;
-  background: linear-gradient(to right, #3b82f6, #10b981);
-  width: 0%;
-  transition: width 0.5s ease;
-}
-
-/* Profile info box */
-#profile-info {
-  flex: 0 0 200px;
-  background-color: #fafafa;
-  padding: 1rem 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
-#profile-info h2 {
-  margin: 0 0 0.5rem;
-  color: #111;
-}
-#profile-info p {
-  font-size: 1.1rem;
-  margin: 0;
-}
-
-/* Leave radar, leaderboard, and everything else untouched */
-
-/* === Only Additions for index.html XP/Profile Layout === */
-
-body {
-  background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
-  color: #f0f0f0;
-}
-
-.main-grid {
-  display: flex;
-  justify-content: space-between;
-  padding: 30px;
-  flex-wrap: wrap;
-}
-
-.left-panel {
-  flex: 1;
-  min-width: 280px;
-  margin-right: 20px;
-}
-
-#level-progress {
-  background: #252525;
-  border: 1px solid #444;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 255, 100, 0.2);
-}
-
-#level-progress h3 {
-  margin-top: 0;
-  color: #72ff72;
-}
-
-.xp-bar {
-  background-color: #333;
-  border-radius: 10px;
-  overflow: hidden;
-  height: 20px;
-  margin-top: 10px;
-}
-
-.xp-fill {
-  background: linear-gradient(to right, #72ff72, #00cc44);
-  height: 100%;
-  width: 0%;
-  transition: width 0.4s ease-in-out;
-}
-
-#profile-info {
-  background: #252525;
-  border: 1px solid #444;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 0 10px rgba(0, 255, 100, 0.2);
-}
-
-#profile-info h2 {
-  margin: 0;
-  color: #00ff99;
-}
-
-#user-level {
-  font-size: 1.2em;
-  color: #ffffff;
-}
-
-.radial,
-.leaderboard {
-  flex: 2;
-  min-width: 300px;
-}
-
-/* Keeps attributes and other pages visually intact */
-
