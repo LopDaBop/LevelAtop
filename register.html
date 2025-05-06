@@ -1,42 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Register</title>
-    <link rel="stylesheet" href="style.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register - LevelAtop</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    form {
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 300px;
+    }
+    input {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+    button {
+      background: #03dac6;
+      color: #000;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    a {
+      color: #bbb;
+      font-size: 14px;
+      text-align: center;
+    }
+  </style>
 </head>
-<body class="auth-page">
-    <div class="auth-container">
-        <h2>Register</h2>
-        <form class="auth-form" onsubmit="handleRegister(event)">
-            <input type="text" id="regUsername" placeholder="Username" required>
-            <input type="password" id="regPassword" placeholder="Password" required>
-            <button type="submit">Register</button>
-        </form>
-        <div class="auth-switch">
-            Already have an account? <a href="login.html">Login</a>
-        </div>
-    </div>
-    <script>
-        function handleRegister(e) {
-            e.preventDefault();
-            const username = document.getElementById("regUsername").value;
-            const password = document.getElementById("regPassword").value;
+<body>
+  <form onsubmit="register(event)">
+    <h2>Create Account</h2>
+    <input id="username" placeholder="Username" required />
+    <input id="password" type="password" placeholder="Password" required />
+    <button type="submit">Register</button>
+    <a href="login.html">Back to Login</a>
+  </form>
 
-            const users = JSON.parse(localStorage.getItem("users") || "[]");
+  <script>
+    function register(event) {
+      event.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
 
-            if (users.some(u => u.username === username)) {
-                alert("Username already exists.");
-                return;
-            }
+      if (localStorage.getItem(username)) {
+        alert("Username already exists.");
+        return;
+      }
 
-            const newUser = { username, password };
-            users.push(newUser);
-            localStorage.setItem("users", JSON.stringify(users));
-            alert("Registration successful! You can now log in.");
-            window.location.href = "login.html";
+      const newUser = {
+        password: password,
+        attributes: {
+          Intelligence: 0,
+          Knowledge: 0,
+          Strength: 0,
+          Health: 0
         }
-    </script>
+      };
+
+      localStorage.setItem(username, JSON.stringify(newUser));
+      localStorage.setItem("currentUser", username);
+      window.location.href = "index.html";
+    }
+  </script>
 </body>
 </html>
