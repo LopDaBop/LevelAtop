@@ -1,59 +1,73 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const currentUser = localStorage.getItem('currentUser');
-  if (!currentUser) {
-    window.location.href = 'login.html';
-    return;
+  // Elements
+  const usernameElement = document.getElementById('username');
+  const userLevelElement = document.getElementById('userLevel');
+  const xpBar = document.getElementById('xpBar');
+  const currentXPElement = document.getElementById('currentXP');
+  const currentAttributeElement = document.getElementById('currentAttribute');
+  const attributeXPBar = document.getElementById('attributeXPBar');
+
+  // Restore user data from localStorage
+  const user = JSON.parse(localStorage.getItem('currentUser'));
+  const attributes = JSON.parse(localStorage.getItem('attributes'));
+
+  if (user) {
+    usernameElement.textContent = user.username;
+    userLevelElement.textContent = user.level;
   }
 
-  const users = JSON.parse(localStorage.getItem('users')) || {};
-  const user = users[currentUser];
+  // Update XP Bar and Attribute progress
+  const updateXPProgress = () => {
+    let totalXP = 0;
+    let closestAttribute = '';
 
-  if (!user) {
-    window.location.href = 'login.html';
-    return;
-  }
-
-  const attributes = user.attributes || {};
-  const totalXP = Object.values(attributes).reduce((a, b) => a + b, 0);
-  const level = Math.floor(totalXP / 770);
-  const xpToLevelUp = 770;
-
-  // Find the attribute closest to leveling up
-  let closestAttr = '';
-  let minXPNeeded = Infinity;
-  for (const [attr, xp] of Object.entries(attributes)) {
-    const xpNeeded = xpToLevelUp - (xp % xpToLevelUp);
-    if (xpNeeded < minXPNeeded) {
-      minXPNeeded = xpNeeded;
-      closestAttr = attr;
+    // Calculate total XP and find the closest attribute to leveling up
+    for (let key in attributes) {
+      totalXP += attributes[key].xp;
+      if (!closestAttribute || attributes[key].xp < 770) {
+        closestAttribute = key;
+      }
     }
-  }
 
-  const currentAttrXP = attributes[closestAttr] || 0;
-  const currentXPPercent = Math.floor((currentAttrXP % xpToLevelUp) / xpToLevelUp * 100);
+    // Update XP display
+    currentXPElement.textContent = totalXP;
+    xpBar.style.width = `${(totalXP / 770) * 100}%`;
 
-  document.getElementById('xp-bar').style.width = `${currentXPPercent}%`;
-  document.getElementById('xp-label').textContent = `${closestAttr}: ${currentAttrXP % xpToLevelUp} / ${xpToLevelUp}`;
-  document.getElementById('username-display').textContent = `Username: ${currentUser}`;
-  document.getElementById('level-display').textContent = `Level: ${level}`;
+    // Display closest attribute to level up
+    currentAttributeElement.textContent = `Closest Attribute to Leveling Up: ${closestAttribute}`;
 
-  // Leaderboard
-  const leaderboardEl = document.getElementById('leaderboard');
-  const sortedUsers = Object.entries(users).sort((a, b) => {
-    const totalA = Object.values(a[1].attributes || {}).reduce((x, y) => x + y, 0);
-    const totalB = Object.values(b[1].attributes || {}).reduce((x, y) => x + y, 0);
-    return totalB - totalA;
+    // Update the closest attribute XP bar
+    attributeXPBar.style.width = `${(attributes[closestAttribute].xp / 770) * 100}%`;
+  };
+
+  updateXPProgress();
+
+  // Handle login (making sure it's stored and checks when logged out)
+  const loginUser = () => {
+    const loginDetails = {
+      username: 'User', // replace with dynamic login details
+      level: 1, // set initial level
+    };
+    localStorage.setItem('currentUser', JSON.stringify(loginDetails));
+    window.location.href = 'index.html';
+  };
+
+  // Handle Logout
+  document.getElementById('logoutButton').addEventListener('click', () => {
+    localStorage.removeItem('currentUser');
+    window.location.href = 'login.html';
   });
 
-  for (const [username, data] of sortedUsers) {
-    const userLevel = Math.floor(Object.values(data.attributes || {}).reduce((x, y) => x + y, 0) / 770);
-    const li = document.createElement('li');
-    li.textContent = `${username} - Level ${userLevel}`;
-    leaderboardEl.appendChild(li);
-  }
-});
+  // Event listeners for buttons
+  document.getElementById('homeButton').addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
 
-function logout() {
-  localStorage.removeItem('currentUser');
-  window.location.href = 'login.html';
-}
+  document.getElementById('attributesButton').addEventListener('click', () => {
+    window.location.href = 'attributes.html';
+  });
+
+  document.getElementById('profileButton').addEventListener('click', () => {
+    window.location.href = 'profile.html';
+  });
+});
