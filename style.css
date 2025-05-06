@@ -1,25 +1,25 @@
 body {
   margin: 0;
-  background: #0d0d0d;
-  color: white;
+  padding: 0;
   font-family: Arial, sans-serif;
+  background: #f0f0f0;
+  color: #333;
 }
 
 header {
-  background: #111;
+  background: #222;
+  color: white;
+  padding: 10px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
+  justify-content: center;
+  gap: 10px;
 }
 
-nav button,
 header button {
-  background: #1db954;
-  border: none;
+  padding: 10px 20px;
+  background: #007bff;
   color: white;
-  padding: 8px 12px;
-  margin: 0 4px;
+  border: none;
   cursor: pointer;
   border-radius: 4px;
 }
@@ -28,66 +28,57 @@ main {
   padding: 20px;
 }
 
-#xp-bar-container {
-  width: 100%;
-  max-width: 500px;
-  background: #333;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
 #xp-bar {
-  height: 25px;
-  background: #555;
-  position: relative;
+  width: 100%;
+  height: 30px;
+  background: #ddd;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-top: 10px;
 }
 
 #xp-fill {
-  background: #1db954;
   height: 100%;
+  background: limegreen;
   width: 0%;
-  display: block;
+  transition: width 0.5s;
+  color: white;
+  text-align: center;
+  line-height: 30px;
 }
 
-#leaderboard ul {
-  list-style: none;
-  padding: 0;
+.green-background {
+  background-color: #e0f7df;
 }
 
-.attribute-page {
-  display: flex;
-  gap: 30px;
-  padding: 20px;
-}
-
-#attribute-inputs input {
-  margin: 5px 0;
+.green-home-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  cursor: pointer;
 }
 
 .socials-container {
   display: flex;
-  height: 80vh;
+  height: 100vh;
 }
 
-.friends-panel {
-  width: 30%;
-  background: #1a1a1a;
-  padding: 10px;
+.friends-list {
+  width: 40%;
+  background: #f4f4f4;
+  padding: 20px;
+  border-right: 2px solid #ccc;
 }
 
-.socials-content {
-  width: 70%;
-  background: #2a2a2a;
-  padding: 10px;
+.right-panel {
+  flex: 1;
+  padding: 20px;
+}
+
+.friends-header {
   display: flex;
-  flex-direction: column;
-}
-
-#search-bar-container input {
-  width: 100%;
-  padding: 8px;
-  border-radius: 4px;
-  border: none;
-  background: #444;
-  color: white;
+  justify-content: space-between;
+  align-items: center;
 }
