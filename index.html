@@ -2,33 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LevelAtop - Home</title>
-  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
   <header>
-    <h1>LevelAtop</h1>
-    <nav>
-      <button onclick="navigate('attributes.html')">Attributes</button>
-      <button onclick="navigate('socials.html')">Socials</button>
-      <button onclick="navigate('profile.html')">Profile</button>
-      <button onclick="logout()">Logout</button>
-    </nav>
+    <button onclick="navigate('attributes.html')">Attributes</button>
+    <button onclick="navigate('socials.html')">Socials</button>
+    <button onclick="navigate('profile.html')">Profile</button>
+    <button onclick="logout()">Logout</button>
   </header>
 
-  <main>
-    <section id="xp-section">
-      <h2 id="xp-title">Closest Attribute Progress</h2>
-      <div id="xp-bar-container">
-        <div id="xp-bar"><span id="xp-fill"></span></div>
-        <p id="xp-value">0 / 770</p>
-      </div>
+  <main id="home-main">
+    <section id="profile-display">
+      <p id="username-display"></p>
+      <p id="level-display"></p>
     </section>
-
-    <section id="leaderboard">
-      <h2>Leaderboard</h2>
-      <ul id="leaderboard-list"></ul>
+    <section id="xp-display">
+      <h2>Closest Attribute Progress</h2>
+      <div id="xp-bar">
+        <div id="xp-fill"></div>
+      </div>
     </section>
   </main>
 
