@@ -2,120 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Attributes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Attributes</title>
+  <link rel="stylesheet" href="../css/style.css" />
 </head>
-<body onload="checkAuthentication(); loadUser();" class="attr-page">
-  <button onclick="goBack()" class="back-btn">← Home</button>
-  <h1>User Attributes</h1>
+<body>
+  <header>
+    <button class="home-button" onclick="navigate('index.html')">🏠 Home</button>
+    <h1>Attributes</h1>
+  </header>
+  <main class="attribute-page">
+    <canvas id="radarChart"></canvas>
+    <div id="attribute-inputs"></div>
+  </main>
 
-  <!-- Main Responsive Flex Layout -->
-  <div class="attribute-page-container">
-    <!-- Left: Chart Section -->
-    <div class="chart-section">
-      <canvas id="attributeRadar"></canvas>
-    </div>
-
-    <!-- Right: Input Section -->
-    <div class="input-section">
-      <label>Intelligence: <input type="number" id="intelligence" min="0" max="100" /></label>
-      <label>Knowledge: <input type="number" id="knowledge" min="0" max="100" /></label>
-      <label>Strength: <input type="number" id="strength" min="0" max="100" /></label>
-      <label>Health: <input type="number" id="health" min="0" max="100" /></label>
-      <button onclick="saveAttributes()" class="save-btn">Save</button>
-    </div>
-  </div>
-
-  <script>
-    function checkAuthentication() {
-      const loggedInUser = localStorage.getItem("loggedInUser");
-      if (!loggedInUser) {
-        window.location.href = "login.html";
-      }
-    }
-
-    function goBack() {
-      window.location.href = "index.html";
-    }
-
-    function getAttributes() {
-      return {
-        Intelligence: parseInt(document.getElementById("intelligence").value) || 0,
-        Knowledge: parseInt(document.getElementById("knowledge").value) || 0,
-        Strength: parseInt(document.getElementById("strength").value) || 0,
-        Health: parseInt(document.getElementById("health").value) || 0
-      };
-    }
-
-    function saveAttributes() {
-      const attrs = getAttributes();
-      localStorage.setItem("attributes", JSON.stringify(attrs));
-      updateChart(attrs);
-    }
-
-    function perceptualScale(value) {
-      return Math.sqrt(value) / Math.sqrt(100);
-    }
-
-    function updateChart(data) {
-      const scaledData = Object.values(data).map(perceptualScale);
-      radarChart.data.datasets[0].data = scaledData;
-      radarChart.update();
-    }
-
-    const savedAttributes = JSON.parse(localStorage.getItem("attributes")) || {
-      Intelligence: 5,
-      Knowledge: 5,
-      Strength: 5,
-      Health: 5
-    };
-
-    document.addEventListener("DOMContentLoaded", () => {
-      for (const key in savedAttributes) {
-        document.getElementById(key.toLowerCase()).value = savedAttributes[key];
-      }
-      updateChart(savedAttributes);
-    });
-
-    const ctx = document.getElementById("attributeRadar").getContext("2d");
-    const radarChart = new Chart(ctx, {
-      type: "radar",
-      data: {
-        labels: ["Intelligence", "Knowledge", "Strength", "Health"],
-        datasets: [{
-          label: "Attribute Distribution",
-          data: [0, 0, 0, 0],
-          backgroundColor: "rgba(46, 204, 113, 0.2)",
-          borderColor: "rgba(39, 174, 96, 1)",
-          borderWidth: 2,
-          pointBackgroundColor: "rgba(39, 174, 96, 1)",
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          r: {
-            min: 0,
-            max: 1.1,
-            ticks: {
-              display: false
-            },
-            grid: {
-              circular: false
-            },
-            pointLabels: {
-              font: { size: 16 }
-            }
-          }
-        },
-        plugins: {
-          legend: { display: false }
-        }
-      }
-    });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../js/script.js"></script>
 </body>
 </html>
