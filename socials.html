@@ -2,31 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Socials</title>
-  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <header>
-    <button onclick="navigate('index.html')">🏠 Home</button>
-    <h1>Socials</h1>
-  </header>
-  <main class="socials-container">
-    <section class="friends-panel">
+  <div class="socials-container">
+    <div class="friends-list">
       <div class="friends-header">
         <h2>Friends</h2>
-        <button id="add-friend-btn">+</button>
+        <button onclick="showSearch()">+</button>
       </div>
-      <ul id="friends-list"></ul>
-    </section>
-    <section class="socials-content">
-      <div id="search-bar-container">
-        <input type="text" placeholder="Search users..." />
-      </div>
-      <div id="socials-view">Select a friend or search to begin</div>
-    </section>
-  </main>
-
+      <ul id="friends"></ul>
+    </div>
+    <div class="right-panel" id="right-panel">
+      <input type="text" placeholder="Search users..." oninput="searchUsers(this.value)" />
+      <ul id="search-results"></ul>
+    </div>
+  </div>
   <script src="../js/script.js"></script>
 </body>
 </html>
