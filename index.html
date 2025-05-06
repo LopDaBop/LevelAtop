@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LevelAtop - Home</title>
-  <link rel="stylesheet" href="styles.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LevelAtop</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
-    <div class="nav-buttons">
-      <button onclick="location.href='attributes.html'">Attributes</button>
-      <button onclick="location.href='socials.html'">Socials</button>
-      <button onclick="location.href='profile.html'">Profile</button>
-      <button onclick="logout()">Logout</button>
-    </div>
+    <nav>
+      <button id="homeButton">Home</button>
+      <button id="attributesButton">Attributes</button>
+      <button id="socialsButton">Socials</button>
+      <button id="profileButton">Profile</button>
+      <button id="logoutButton">Logout</button>
+    </nav>
   </header>
 
-  <main>
-    <section class="xp-section">
-      <h2>XP Progress</h2>
-      <div id="xp-bar-container">
-        <div id="xp-bar"><span id="xp-label">0%</span></div>
+  <main id="mainContent">
+    <!-- Profile Section -->
+    <section id="profileSection">
+      <h2>Welcome, <span id="username">User</span></h2>
+      <p>Level: <span id="userLevel">1</span></p>
+      <div id="xpBarContainer">
+        <div id="xpBar"></div>
+        <p id="xpText">XP: <span id="currentXP">0</span></p>
       </div>
     </section>
 
-    <section class="leaderboard-section">
-      <h2>Leaderboard</h2>
-      <ul id="leaderboard"></ul>
+    <!-- XP Bar (Closest Attribute to Leveling Up) -->
+    <section id="xpSection">
+      <h3>XP Progress</h3>
+      <p id="currentAttribute">Closest Attribute to Leveling Up: Strength</p>
+      <div id="attributeXPBar"></div>
     </section>
+
+    <!-- The rest of your content, e.g., Leaderboard, etc. -->
   </main>
 
-  <div class="profile-info">
-    <p id="username-display">Username: </p>
-    <p id="level-display">Level: </p>
-  </div>
+  <footer>
+    <!-- Footer content -->
+  </footer>
 
   <script src="script.js"></script>
 </body>
