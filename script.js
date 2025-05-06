@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('xp-bar').style.width = `${currentXPPercent}%`;
   document.getElementById('xp-label').textContent = `${closestAttr}: ${currentAttrXP % xpToLevelUp} / ${xpToLevelUp}`;
-  document.getElementById('username-display').textContent = `User: ${currentUser}`;
+  document.getElementById('username-display').textContent = `Username: ${currentUser}`;
   document.getElementById('level-display').textContent = `Level: ${level}`;
 
   // Leaderboard
