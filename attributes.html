@@ -2,14 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Attributes</title>
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
 </head>
-<body class="green-background">
-  <button onclick="navigate('index.html')" class="green-home-button">Home</button>
-  <canvas id="radarChart"></canvas>
-  <div id="attribute-inputs"></div>
-  <script src="../js/script.js"></script>
+<body onload="requireLogin(); updateXPBar();">
+  <header>
+    <h1>Your Attributes</h1>
+    <nav>
+      <button onclick="window.location.href='index.html'">Home</button>
+      <button onclick="logout()">Logout</button>
+    </nav>
+  </header>
+  <main>
+    <div id="profile-info"></div>
+    <div id="xp-bar-container">
+      <div id="xp-bar"></div>
+    </div>
+    <!-- Optionally, you can add the radar chart or individual attribute stats here -->
+  </main>
 </body>
 </html>
