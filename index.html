@@ -1,32 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LevelAtop - Home</title>
-  <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <title>LevelAtop - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
-<body>
-  <header>
-    <button onclick="navigate('attributes.html')">Attributes</button>
-    <button onclick="navigate('socials.html')">Socials</button>
-    <button onclick="navigate('profile.html')">Profile</button>
-    <button onclick="logout()">Logout</button>
-  </header>
-
-  <main id="home-main">
-    <section id="profile-display">
-      <p id="username-display"></p>
-      <p id="level-display"></p>
-    </section>
-    <section id="xp-display">
-      <h2>Closest Attribute Progress</h2>
-      <div id="xp-bar">
-        <div id="xp-fill"></div>
-      </div>
-    </section>
-  </main>
-
-  <script src="../js/script.js"></script>
+<body onload="requireLogin(); updateXPBar();">
+    <header>
+        <h1>LevelAtop</h1>
+        <nav>
+            <button onclick="window.location.href='attributes.html'">Attributes</button>
+            <button onclick="window.location.href='profile.html'">Profile</button>
+            <button onclick="window.location.href='socials.html'">Socials</button>
+            <button onclick="logout()">Logout</button>
+        </nav>
+    </header>
+    <main>
+        <div id="profile-info"></div>
+        <div id="xp-bar-container">
+            <div id="xp-bar"></div>
+        </div>
+    </main>
 </body>
 </html>
