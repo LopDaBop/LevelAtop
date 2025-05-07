@@ -3,22 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <title>Socials</title>
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
+  <style>
+    #socials-container {
+      display: flex;
+      height: 80vh;
+    }
+
+    #friends-list {
+      width: 40%;
+      background-color: #181818;
+      border-right: 2px solid #444;
+      overflow-y: auto;
+      padding: 1em;
+    }
+
+    #right-panel {
+      width: 60%;
+      padding: 1em;
+    }
+  </style>
 </head>
-<body>
-  <div class="socials-container">
-    <div class="friends-list">
-      <div class="friends-header">
-        <h2>Friends</h2>
-        <button onclick="showSearch()">+</button>
+<body onload="requireLogin();">
+  <header>
+    <h1>Socials</h1>
+    <nav>
+      <button onclick="window.location.href='index.html'">Home</button>
+      <button onclick="logout()">Logout</button>
+    </nav>
+  </header>
+  <main id="socials-container">
+    <div id="friends-list">
+      <h2>Friends <button style="float:right;">+</button></h2>
+      <!-- Example friend -->
+      <div class="friend-entry">
+        <span>FriendUsername</span>
+        <div>
+          <button>Profile</button>
+          <button>Chat</button>
+        </div>
       </div>
-      <ul id="friends"></ul>
     </div>
-    <div class="right-panel" id="right-panel">
-      <input type="text" placeholder="Search users..." oninput="searchUsers(this.value)" />
-      <ul id="search-results"></ul>
+    <div id="right-panel">
+      <h3>Search / Chat / Profile View</h3>
+      <!-- You can implement tabs or replace this dynamically -->
     </div>
-  </div>
-  <script src="../js/script.js"></script>
+  </main>
 </body>
 </html>
