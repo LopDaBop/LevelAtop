@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <title>Attributes</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script defer src="script.js"></script>
 </head>
-<body onload="requireLogin(); updateXPBar();">
+<body onload="requireLogin(); updateXPBar(); renderRadarChart();">
   <header>
     <h1>Your Attributes</h1>
     <nav>
@@ -19,7 +20,11 @@
     <div id="xp-bar-container">
       <div id="xp-bar"></div>
     </div>
-    <!-- Optionally, you can add the radar chart or individual attribute stats here -->
+
+    <!-- Radar Chart -->
+    <section id="chart-section">
+      <canvas id="radarChart" width="400" height="400"></canvas>
+    </section>
   </main>
 </body>
 </html>
