@@ -3,11 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <title>Profile</title>
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
 </head>
-<body>
-  <h1>Your Profile</h1>
-  <div id="profile-info"></div>
-  <script src="../js/script.js"></script>
+<body onload="requireLogin(); updateXPBar();">
+  <header>
+    <h1>Profile</h1>
+    <nav>
+      <button onclick="window.location.href='index.html'">Home</button>
+      <button onclick="logout()">Logout</button>
+    </nav>
+  </header>
+  <main>
+    <div id="profile-info"></div>
+    <p>Your profile and stats will be expanded here.</p>
+  </main>
 </body>
 </html>
